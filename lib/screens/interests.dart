@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:kwekwana/screens/home_landing_screen.dart';
+import 'package:kwekwana/screens/profile_pic.dart';
+
+import 'bottom_nav_bar_screens.dart';
 
 class Interests extends StatefulWidget {
   const Interests({Key? key}) : super(key: key);
@@ -165,7 +168,7 @@ class _InterestsState extends State<Interests> {
                   onPressed: () async {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => HomeLandingScreen()),
+                      MaterialPageRoute(builder: (context) => ProfilePic()),
                     );
                   },
                   height: 42.0,

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kwekwana/screens/home_landing_screen.dart';
+
+import 'bottom_nav_bar_screens.dart';
 
 class ProfilePic extends StatefulWidget {
   const ProfilePic({Key? key}) : super(key: key);
@@ -24,23 +27,18 @@ class _ProfilePicState extends State<ProfilePic> {
                   Container(
                     height: 85,
                     width: 85,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(130),
-                        color: Colors.white),
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(130), color: Colors.white),
                     alignment: Alignment.center,
                     child: Container(
                       height: 83,
                       width: 83,
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(120),
-                          color: Color.fromRGBO(235, 235, 235, 1)),
+                          borderRadius: BorderRadius.circular(120), color: Color.fromRGBO(235, 235, 235, 1)),
                       alignment: Alignment.center,
                       child: Container(
                         height: 70,
                         width: 70,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(100),
-                            color: Colors.white),
+                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(100), color: Colors.white),
                         child: Icon(
                           Icons.arrow_back,
                           color: Colors.red,
@@ -101,9 +99,7 @@ class _ProfilePicState extends State<ProfilePic> {
                     Container(
                       width: 100,
                       height: 100,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          color: Colors.white),
+                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: Colors.white),
                       child: Icon(
                         Icons.add,
                         color: Colors.red,
@@ -113,9 +109,7 @@ class _ProfilePicState extends State<ProfilePic> {
                     Container(
                       width: 100,
                       height: 100,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          color: Colors.white),
+                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: Colors.white),
                       child: Icon(
                         Icons.add,
                         color: Colors.red,
@@ -125,9 +119,7 @@ class _ProfilePicState extends State<ProfilePic> {
                     Container(
                       width: 100,
                       height: 100,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          color: Colors.white),
+                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: Colors.white),
                       child: Icon(
                         Icons.add,
                         color: Colors.red,
@@ -153,15 +145,15 @@ class _ProfilePicState extends State<ProfilePic> {
               margin: EdgeInsets.only(top: 50),
               width: 250,
               height: 40,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  color: Color.fromRGBO(192, 0, 96, 1)),
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: Color.fromRGBO(192, 0, 96, 1)),
               child: MaterialButton(
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => BottomNavBarScreens()));
+                },
                 child: Text(
                   'Confirm',
                   style: TextStyle(fontSize: 25.0, color: Colors.white),
                 ),
-                onPressed: () {},
               ),
             ),
           ],

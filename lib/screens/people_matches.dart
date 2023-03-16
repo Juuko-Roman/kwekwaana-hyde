@@ -10,6 +10,10 @@ class PeopleMatches extends StatefulWidget {
 class _PeopleMatchesState extends State<PeopleMatches> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: Center(
+        child: Text('Matches screen'),
+      ),
+    );
   }
 }

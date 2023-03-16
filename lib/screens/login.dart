@@ -73,203 +73,209 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ],
             ),
-            Container(
-              margin: const EdgeInsets.only(bottom: 20, left: 15, right: 15, top: 50),
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              height: 50,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(30),
-                border: Border.all(color: Color.fromRGBO(255, 196, 225, 1)),
-              ),
-              child: Row(
+            Expanded(
+              child: ListView(
                 children: [
                   Container(
-                    padding: EdgeInsets.all(5),
+                    margin: const EdgeInsets.only(bottom: 20, left: 15, right: 15, top: 50),
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    height: 50,
                     decoration: BoxDecoration(
-                      color: Color.fromRGBO(255, 229, 242, 1),
-                      borderRadius: BorderRadius.circular(50),
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(30),
+                      border: Border.all(color: Color.fromRGBO(255, 196, 225, 1)),
                     ),
-                    child: Icon(
-                      Icons.phone_enabled,
-                      color: Color.fromRGBO(255, 0, 127, 1),
-                      size: 25,
-                    ),
-                  ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Expanded(
-                    child: TextField(
-                      textAlign: TextAlign.left,
-                      onChanged: (value) {},
-                      decoration: const InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'Enter number',
-                        hintStyle: TextStyle(
-                          color: Color.fromRGBO(178, 178, 178, 1),
+                    child: Row(
+                      children: [
+                        Container(
+                          padding: EdgeInsets.all(5),
+                          decoration: BoxDecoration(
+                            color: Color.fromRGBO(255, 229, 242, 1),
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                          child: Icon(
+                            Icons.phone_enabled,
+                            color: Color.fromRGBO(255, 0, 127, 1),
+                            size: 25,
+                          ),
                         ),
-                        // contentPadding: EdgeInsets.only(bottom: 10.0, left: 5.0),
-                      ),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Expanded(
+                          child: TextField(
+                            textAlign: TextAlign.left,
+                            onChanged: (value) {},
+                            decoration: const InputDecoration(
+                              border: InputBorder.none,
+                              hintText: 'Enter number',
+                              hintStyle: TextStyle(
+                                color: Color.fromRGBO(178, 178, 178, 1),
+                              ),
+                              // contentPadding: EdgeInsets.only(bottom: 10.0, left: 5.0),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ],
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Divider(
-                      color: Color.fromRGBO(178, 178, 178, 1),
+                  Container(
+                    margin: EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Divider(
+                            color: Color.fromRGBO(178, 178, 178, 1),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 25),
+                          child: Text(
+                            "or email",
+                          ),
+                        ),
+                        Expanded(
+                          child: Divider(
+                            color: Color.fromRGBO(178, 178, 178, 1),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(bottom: 20, left: 15, right: 15, top: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(30),
+                      border: Border.all(color: Color.fromRGBO(255, 196, 225, 1)),
+                    ),
+                    child: Row(
+                      children: [
+                        Container(
+                          padding: EdgeInsets.all(5),
+                          decoration: BoxDecoration(
+                            color: Color.fromRGBO(255, 229, 242, 1),
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                          child: Icon(
+                            Icons.email,
+                            color: Color.fromRGBO(255, 0, 127, 1),
+                            size: 25,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Expanded(
+                          child: TextField(
+                            textAlign: TextAlign.left,
+                            onChanged: (value) {},
+                            decoration: const InputDecoration(
+                              border: InputBorder.none,
+                              hintText: 'Enter user name',
+                              hintStyle: TextStyle(
+                                color: Color.fromRGBO(178, 178, 178, 1),
+                              ),
+                              // contentPadding: EdgeInsets.only(bottom: 10.0, left: 5.0),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(bottom: 20, left: 15, right: 15, top: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(30),
+                      border: Border.all(color: Color.fromRGBO(255, 196, 225, 1)),
+                    ),
+                    child: Row(
+                      children: [
+                        Container(
+                          padding: EdgeInsets.all(5),
+                          decoration: BoxDecoration(
+                            color: Color.fromRGBO(255, 229, 242, 1),
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                          child: Icon(
+                            Icons.remove_red_eye,
+                            color: Color.fromRGBO(255, 0, 127, 1),
+                            size: 25,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Expanded(
+                          child: TextField(
+                            textAlign: TextAlign.left,
+                            onChanged: (value) {},
+                            decoration: const InputDecoration(
+                              border: InputBorder.none,
+                              hintText: 'Enter password',
+                              hintStyle: TextStyle(
+                                color: Color.fromRGBO(178, 178, 178, 1),
+                              ),
+                              // contentPadding: EdgeInsets.only(bottom: 10.0, left: 5.0),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 25),
-                    child: Text(
-                      "or email",
-                    ),
-                  ),
-                  Expanded(
-                    child: Divider(
-                      color: Color.fromRGBO(178, 178, 178, 1),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.only(bottom: 20, left: 15, right: 15, top: 10),
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              height: 50,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(30),
-                border: Border.all(color: Color.fromRGBO(255, 196, 225, 1)),
-              ),
-              child: Row(
-                children: [
-                  Container(
-                    padding: EdgeInsets.all(5),
-                    decoration: BoxDecoration(
-                      color: Color.fromRGBO(255, 229, 242, 1),
-                      borderRadius: BorderRadius.circular(50),
-                    ),
-                    child: Icon(
-                      Icons.email,
-                      color: Color.fromRGBO(255, 0, 127, 1),
-                      size: 25,
-                    ),
-                  ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Expanded(
-                    child: TextField(
-                      textAlign: TextAlign.left,
-                      onChanged: (value) {},
-                      decoration: const InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'Enter user name',
-                        hintStyle: TextStyle(
-                          color: Color.fromRGBO(178, 178, 178, 1),
+                    padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                    child: Material(
+                      elevation: 1.5,
+                      borderRadius: BorderRadius.circular(50.0),
+                      child: MaterialButton(
+                        onPressed: () async {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => VerificationCode()),
+                          );
+                        },
+                        height: 42.0,
+                        minWidth: 400,
+                        child: const Text(
+                          'Log in',
+                          style: TextStyle(
+                            color: Color.fromRGBO(255, 83, 169, 1),
+                            fontSize: 16,
+                          ),
                         ),
-                        // contentPadding: EdgeInsets.only(bottom: 10.0, left: 5.0),
                       ),
                     ),
                   ),
-                ],
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.only(bottom: 20, left: 15, right: 15, top: 10),
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              height: 50,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(30),
-                border: Border.all(color: Color.fromRGBO(255, 196, 225, 1)),
-              ),
-              child: Row(
-                children: [
                   Container(
-                    padding: EdgeInsets.all(5),
-                    decoration: BoxDecoration(
-                      color: Color.fromRGBO(255, 229, 242, 1),
-                      borderRadius: BorderRadius.circular(50),
-                    ),
-                    child: Icon(
-                      Icons.remove_red_eye,
-                      color: Color.fromRGBO(255, 0, 127, 1),
-                      size: 25,
-                    ),
-                  ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Expanded(
-                    child: TextField(
-                      textAlign: TextAlign.left,
-                      onChanged: (value) {},
-                      decoration: const InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'Enter password',
-                        hintStyle: TextStyle(
-                          color: Color.fromRGBO(178, 178, 178, 1),
+                    margin: EdgeInsets.only(left: 15, top: 40),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Don\'t have an account?',
+                          style: TextStyle(color: Colors.white),
                         ),
-                        // contentPadding: EdgeInsets.only(bottom: 10.0, left: 5.0),
-                      ),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => SignUp()));
+                          },
+                          child: Text(
+                            'Sign Up',
+                            style: TextStyle(
+                              color: Color.fromRGBO(255, 0, 127, 1),
+                              decoration: TextDecoration.underline,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15.0),
-              child: Material(
-                elevation: 1.5,
-                borderRadius: BorderRadius.circular(50.0),
-                child: MaterialButton(
-                  onPressed: () async {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => VerificationCode()),
-                    );
-                  },
-                  height: 42.0,
-                  minWidth: 400,
-                  child: const Text(
-                    'Log in',
-                    style: TextStyle(
-                      color: Color.fromRGBO(255, 83, 169, 1),
-                      fontSize: 16,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.only(left: 15, top: 40),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Don\'t have an account?',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => SignUp()));
-                    },
-                    child: Text(
-                      'Sign Up',
-                      style: TextStyle(
-                        color: Color.fromRGBO(255, 0, 127, 1),
-                        decoration: TextDecoration.underline,
-                      ),
-                    ),
-                  ),
+                  )
                 ],
               ),
             )
