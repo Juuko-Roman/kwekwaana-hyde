@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../models/inbox_message.dart';
+
 class ChatInBox extends StatefulWidget {
   const ChatInBox({Key? key}) : super(key: key);
 
@@ -8,6 +10,17 @@ class ChatInBox extends StatefulWidget {
 }
 
 class _ChatInBoxState extends State<ChatInBox> {
+  List<InboxMessage> messages = [
+    InboxMessage(messageContent: "Hello, Will", messageType: "receiver"),
+    InboxMessage(messageContent: "How have you been?", messageType: "receiver"),
+    InboxMessage(messageContent: "Hey Kriss, I am doing fine dude. wbu?", messageType: "sender"),
+    InboxMessage(messageContent: "ehhhh, doing OK.", messageType: "receiver"),
+    InboxMessage(messageContent: "Is there any thing wrong?", messageType: "sender"),
+    InboxMessage(
+        messageContent:
+            "i am doing fine, thanks for hooking me up i am so glad you have decided to write to me if you dont mind may i know you more possibly starting from where you come from and your age",
+        messageType: "receiver"),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -98,10 +111,117 @@ class _ChatInBoxState extends State<ChatInBox> {
           Expanded(
             child: Container(
               width: double.infinity,
-              padding: EdgeInsets.symmetric(horizontal: 25),
               decoration: BoxDecoration(),
+              child: ListView.builder(
+                itemCount: messages.length,
+                shrinkWrap: true,
+                padding: EdgeInsets.only(top: 0, bottom: 0),
+                itemBuilder: (context, index) {
+                  return Column(
+                    children: [
+                      Container(
+                        padding: EdgeInsets.only(left: 8, right: 8, top: 10, bottom: 3),
+                        child: Align(
+                          alignment:
+                              (messages[index].messageType == "receiver" ? Alignment.topLeft : Alignment.topRight),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: messages[index].messageType == "receiver"
+                                      ? BorderRadius.only(
+                                          topLeft: Radius.circular(10),
+                                          topRight: Radius.circular(10),
+                                          bottomRight: Radius.circular(10))
+                                      : BorderRadius.only(
+                                          topLeft: Radius.circular(10),
+                                          topRight: Radius.circular(10),
+                                          bottomLeft: Radius.circular(10)),
+                                  color: (messages[index].messageType == "receiver"
+                                      ? Colors.grey.shade200
+                                      : Color.fromRGBO(255, 0, 127, 0.7)),
+                                ),
+                                padding: EdgeInsets.all(16),
+                                margin: EdgeInsets.only(bottom: 3),
+                                child: Text(
+                                  messages[index].messageContent,
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    color: messages[index].messageType != "receiver" ? Colors.white : null,
+                                  ),
+                                ),
+                              ),
+                              Text(
+                                '06:27',
+                                style: TextStyle(color: Colors.grey),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              ),
             ),
-          )
+          ),
+          Align(
+            alignment: Alignment.bottomLeft,
+            child: Container(
+              padding: EdgeInsets.only(left: 10, bottom: 10, top: 10),
+              height: 60,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: Color.fromRGBO(245, 245, 245, 1),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Row(
+                children: <Widget>[
+                  GestureDetector(
+                    onTap: () {},
+                    child: Container(
+                      height: 30,
+                      width: 30,
+                      decoration: BoxDecoration(
+                        color: Color.fromRGBO(255, 0, 127, 0.15),
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      child: Icon(
+                        Icons.attachment,
+                        color: Color.fromRGBO(255, 0, 127, 1),
+                        size: 20,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 15,
+                  ),
+                  Expanded(
+                    child: TextField(
+                      decoration: InputDecoration(
+                          hintText: "Type your message",
+                          hintStyle: TextStyle(color: Colors.black54, fontSize: 15),
+                          border: InputBorder.none),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 15,
+                  ),
+                  FloatingActionButton(
+                    onPressed: () {},
+                    child: Icon(
+                      Icons.send,
+                      color: Color.fromRGBO(255, 0, 127, 1),
+                      size: 18,
+                    ),
+                    backgroundColor: Color.fromRGBO(255, 0, 127, 0.15),
+                    elevation: 0,
+                  ),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );

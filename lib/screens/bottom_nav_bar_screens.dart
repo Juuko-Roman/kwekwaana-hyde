@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'airtel_mobile_money.dart';
 import 'country_screen.dart';
+import 'filter.dart';
 import 'home_landing_screen.dart';
 import 'likes.dart';
 import 'mtn_mobile_money.dart';
@@ -9,6 +10,8 @@ import 'package:kwekwana/screens/chat_screen.dart';
 import 'package:kwekwana/screens/people_matches.dart';
 import 'package:kwekwana/screens/profile.dart';
 import 'package:kwekwana/screens/settings_screen.dart';
+
+import 'notification_screen.dart';
 
 class BottomNavBarScreens extends StatefulWidget {
   const BottomNavBarScreens({Key? key}) : super(key: key);
@@ -141,9 +144,7 @@ class _BottomNavBarScreensState extends State<BottomNavBarScreens> {
                   child: Row(
                     children: [
                       GestureDetector(
-                        onTap: () {
-                          setState(() {});
-                        },
+                        onTap: () {},
                         child: Text(
                           'New Members',
                           style: TextStyle(
@@ -156,10 +157,15 @@ class _BottomNavBarScreensState extends State<BottomNavBarScreens> {
                       SizedBox(
                         width: 25,
                       ),
-                      Icon(
-                        Icons.sort_outlined,
-                        size: 30,
-                        color: Color.fromRGBO(255, 0, 127, 1),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => Filter()));
+                        },
+                        child: Icon(
+                          Icons.sort_outlined,
+                          size: 30,
+                          color: Color.fromRGBO(255, 0, 127, 1),
+                        ),
                       ),
                     ],
                   ),
@@ -187,7 +193,7 @@ class _BottomNavBarScreensState extends State<BottomNavBarScreens> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => SettingsScreen()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => NotificationScreen()));
                   },
                   child: Container(
                     margin: EdgeInsets.only(right: 10),
@@ -201,7 +207,7 @@ class _BottomNavBarScreensState extends State<BottomNavBarScreens> {
                             borderRadius: BorderRadius.circular(50),
                             // color: Color.fromRGBO(255, 229, 242, 1),
                           ),
-                          child: CircleAvatar(
+                          child: const CircleAvatar(
                             backgroundColor: Color.fromRGBO(255, 229, 242, 1),
                             child: Icon(
                               Icons.add,
@@ -210,7 +216,7 @@ class _BottomNavBarScreensState extends State<BottomNavBarScreens> {
                             ),
                           ),
                         ),
-                        Text(
+                        const Text(
                           'Add me',
                           textAlign: TextAlign.center,
                           style: TextStyle(
@@ -242,11 +248,11 @@ class _BottomNavBarScreensState extends State<BottomNavBarScreens> {
                                   ),
                                   borderRadius: BorderRadius.circular(50),
                                 ),
-                                child: CircleAvatar(
+                                child: const CircleAvatar(
                                   backgroundImage: AssetImage('images/image1.jpg'),
                                 ),
                               ),
-                              Text(
+                              const Text(
                                 'Scarlet',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
