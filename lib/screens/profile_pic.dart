@@ -19,35 +19,41 @@ class _ProfilePicState extends State<ProfilePic> {
         color: Color.fromRGBO(235, 235, 235, 1),
         child: Column(
           children: [
-            Container(
-              margin: EdgeInsets.only(top: 40, left: 30, right: 80),
+            Padding(
+              padding: const EdgeInsets.only(top: 35.0),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Container(
-                    height: 85,
-                    width: 85,
-                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(130), color: Colors.white),
-                    alignment: Alignment.center,
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
                     child: Container(
-                      height: 83,
-                      width: 83,
+                      margin: EdgeInsets.fromLTRB(10, 0, 0, 10),
+                      padding: EdgeInsets.all(5),
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(120), color: Color.fromRGBO(235, 235, 235, 1)),
-                      alignment: Alignment.center,
+                        border: Border.all(
+                          width: 2,
+                          color: Colors.white,
+                        ),
+                        borderRadius: BorderRadius.circular(50),
+                      ),
                       child: Container(
-                        height: 70,
-                        width: 70,
-                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(100), color: Colors.white),
+                        padding: EdgeInsets.all(15),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(50),
+                        ),
                         child: Icon(
                           Icons.arrow_back,
-                          color: Colors.red,
-                          size: 50,
+                          color: Color.fromRGBO(255, 0, 127, 1),
+                          size: 25,
                         ),
                       ),
                     ),
                   ),
-                  Container(
+                  Padding(
+                    padding: const EdgeInsets.only(left: 40.0),
                     child: Column(
                       children: [
                         Text(
@@ -74,6 +80,13 @@ class _ProfilePicState extends State<ProfilePic> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
                 color: Colors.white,
+                boxShadow: const [
+                  BoxShadow(
+                    offset: Offset(0, 2),
+                    blurRadius: 6,
+                    color: Color.fromRGBO(200, 200, 200, 1),
+                  ),
+                ],
               ),
               width: 180,
               height: 180,
@@ -86,6 +99,7 @@ class _ProfilePicState extends State<ProfilePic> {
             ),
             Stack(children: [
               Container(
+                width: double.infinity,
                 margin: EdgeInsets.only(top: 5),
                 child: SvgPicture.asset('images/okwekwana.svg'),
               ),
@@ -99,10 +113,13 @@ class _ProfilePicState extends State<ProfilePic> {
                     Container(
                       width: 100,
                       height: 100,
-                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: Colors.white),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: Colors.white,
+                      ),
                       child: Icon(
                         Icons.add,
-                        color: Colors.red,
+                        color: Color.fromRGBO(255, 0, 127, 1),
                         size: 50,
                       ),
                     ),
@@ -112,7 +129,7 @@ class _ProfilePicState extends State<ProfilePic> {
                       decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: Colors.white),
                       child: Icon(
                         Icons.add,
-                        color: Colors.red,
+                        color: Color.fromRGBO(255, 0, 127, 1),
                         size: 50,
                       ),
                     ),
@@ -122,7 +139,7 @@ class _ProfilePicState extends State<ProfilePic> {
                       decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: Colors.white),
                       child: Icon(
                         Icons.add,
-                        color: Colors.red,
+                        color: Color.fromRGBO(255, 0, 127, 1),
                         size: 50,
                       ),
                     )
@@ -130,29 +147,39 @@ class _ProfilePicState extends State<ProfilePic> {
                 ),
               ),
               Positioned(
-                top: 180,
-                left: 60,
+                top: 190,
+                left: 80,
                 right: 30,
                 child: Container(
                     margin: EdgeInsets.only(top: 5),
                     child: const Text(
                       "Upload three photos of you",
-                      style: TextStyle(fontSize: 20, color: Colors.white),
+                      style: TextStyle(fontSize: 16, color: Colors.white),
                     )),
               ),
             ]),
-            Container(
-              margin: EdgeInsets.only(top: 50),
-              width: 250,
-              height: 40,
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: Color.fromRGBO(192, 0, 96, 1)),
-              child: MaterialButton(
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => BottomNavBarScreens()));
-                },
-                child: Text(
-                  'Confirm',
-                  style: TextStyle(fontSize: 25.0, color: Colors.white),
+            Padding(
+              padding: const EdgeInsets.only(left: 15.0, right: 15, top: 26),
+              child: Material(
+                elevation: 0.1,
+                color: Color.fromRGBO(255, 0, 127, 1),
+                borderRadius: BorderRadius.circular(50.0),
+                child: MaterialButton(
+                  onPressed: () async {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => BottomNavBarScreens()),
+                    );
+                  },
+                  height: 42.0,
+                  minWidth: 400,
+                  child: const Text(
+                    'Confirm',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                    ),
+                  ),
                 ),
               ),
             ),

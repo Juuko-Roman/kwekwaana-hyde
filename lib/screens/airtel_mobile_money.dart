@@ -135,7 +135,7 @@ class _AirtelMobileMoneyState extends State<AirtelMobileMoney> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   TextFormField(
@@ -143,7 +143,7 @@ class _AirtelMobileMoneyState extends State<AirtelMobileMoney> {
                     textAlign: TextAlign.left,
                     style: TextStyle(fontSize: 14),
                     onChanged: (value) {},
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       filled: true,
                       fillColor: Color.fromRGBO(238, 238, 238, 1),
                       enabledBorder: OutlineInputBorder(
@@ -165,7 +165,7 @@ class _AirtelMobileMoneyState extends State<AirtelMobileMoney> {
                       // _pName = value!;
                     },
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
                   Row(
@@ -173,7 +173,7 @@ class _AirtelMobileMoneyState extends State<AirtelMobileMoney> {
                     children: [
                       Container(
                         width: 250,
-                        child: Text(
+                        child: const Text(
                           'You\'ll get a prompt to confirm the payment on your selected number ',
                           textAlign: TextAlign.center,
                           style: TextStyle(

@@ -145,7 +145,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => ChatScreen()));
+                    Navigator.pop(context);
                   },
                   child: Text(
                     'Chats',

@@ -95,73 +95,78 @@ class _GenderSelectionState extends State<GenderSelection> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      male1Tapped = !male1Tapped;
-                    });
-                  },
-                  child: Container(
-                    width: 140,
-                    padding: EdgeInsets.symmetric(horizontal: 15, vertical: 8),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      color: male1Tapped ? Color.fromRGBO(255, 0, 127, 1) : Colors.white,
-                      border: Border.all(
-                        color: Color.fromRGBO(240, 240, 240, 1),
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        male1Tapped = !male1Tapped;
+                      });
+                    },
+                    child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        color: male1Tapped ? Color.fromRGBO(255, 0, 127, 1) : Colors.white,
+                        border: Border.all(
+                          color: Color.fromRGBO(240, 240, 240, 1),
+                        ),
                       ),
-                    ),
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.boy,
-                          color: male1Tapped ? Colors.white : Color.fromRGBO(255, 0, 127, 1),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text(
-                          'Male',
-                          style: TextStyle(
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.boy,
                             color: male1Tapped ? Colors.white : Color.fromRGBO(255, 0, 127, 1),
                           ),
-                        ),
-                      ],
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            'Male',
+                            style: TextStyle(
+                              color: male1Tapped ? Colors.white : Color.fromRGBO(255, 0, 127, 1),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
-                GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      female1Tapped = !female1Tapped;
-                    });
-                  },
-                  child: Container(
-                    width: 140,
-                    padding: EdgeInsets.symmetric(horizontal: 15, vertical: 8),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      color: female1Tapped ? Color.fromRGBO(255, 0, 127, 1) : Colors.white,
-                      border: Border.all(
-                        color: Color.fromRGBO(240, 240, 240, 1),
+                SizedBox(
+                  width: 10,
+                ),
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        female1Tapped = !female1Tapped;
+                      });
+                    },
+                    child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        color: female1Tapped ? Color.fromRGBO(255, 0, 127, 1) : Colors.white,
+                        border: Border.all(
+                          color: Color.fromRGBO(240, 240, 240, 1),
+                        ),
                       ),
-                    ),
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.girl,
-                          color: female1Tapped ? Colors.white : Color.fromRGBO(255, 0, 127, 1),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text(
-                          'Female',
-                          style: TextStyle(
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.girl,
                             color: female1Tapped ? Colors.white : Color.fromRGBO(255, 0, 127, 1),
                           ),
-                        ),
-                      ],
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            'Female',
+                            style: TextStyle(
+                              color: female1Tapped ? Colors.white : Color.fromRGBO(255, 0, 127, 1),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -189,68 +194,73 @@ class _GenderSelectionState extends State<GenderSelection> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      male2Tapped = !male2Tapped;
-                    });
-                  },
-                  child: Container(
-                    width: 140,
-                    padding: EdgeInsets.symmetric(horizontal: 15, vertical: 8),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      color: male2Tapped ? Color.fromRGBO(255, 0, 127, 1) : Colors.white,
-                      border: Border.all(
-                        color: Color.fromRGBO(240, 240, 240, 1),
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        male2Tapped = !male2Tapped;
+                      });
+                    },
+                    child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        color: male2Tapped ? Color.fromRGBO(255, 0, 127, 1) : Colors.white,
+                        border: Border.all(
+                          color: Color.fromRGBO(240, 240, 240, 1),
+                        ),
                       ),
-                    ),
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.boy,
-                          color: male2Tapped ? Colors.white : Color.fromRGBO(255, 0, 127, 1),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text(
-                          'Male',
-                          style: TextStyle(
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.boy,
                             color: male2Tapped ? Colors.white : Color.fromRGBO(255, 0, 127, 1),
                           ),
-                        ),
-                      ],
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            'Male',
+                            style: TextStyle(
+                              color: male2Tapped ? Colors.white : Color.fromRGBO(255, 0, 127, 1),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
-                GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      female2Tapped = !female2Tapped;
-                    });
-                  },
-                  child: Container(
-                    width: 140,
-                    padding: EdgeInsets.symmetric(horizontal: 15, vertical: 8),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      color: female2Tapped ? Color.fromRGBO(255, 0, 127, 1) : Colors.white,
-                      border: Border.all(
-                        color: Color.fromRGBO(240, 240, 240, 1),
+                SizedBox(
+                  width: 10,
+                ),
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        female2Tapped = !female2Tapped;
+                      });
+                    },
+                    child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        color: female2Tapped ? Color.fromRGBO(255, 0, 127, 1) : Colors.white,
+                        border: Border.all(
+                          color: Color.fromRGBO(240, 240, 240, 1),
+                        ),
                       ),
-                    ),
-                    child: Row(
-                      children: [
-                        Icon(Icons.girl, color: female2Tapped ? Colors.white : Color.fromRGBO(255, 0, 127, 1)),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text(
-                          'Female',
-                          style: TextStyle(color: female2Tapped ? Colors.white : Color.fromRGBO(255, 0, 127, 1)),
-                        ),
-                      ],
+                      child: Row(
+                        children: [
+                          Icon(Icons.girl, color: female2Tapped ? Colors.white : Color.fromRGBO(255, 0, 127, 1)),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            'Female',
+                            style: TextStyle(color: female2Tapped ? Colors.white : Color.fromRGBO(255, 0, 127, 1)),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),

@@ -28,7 +28,6 @@ class _BottomNavBarScreensState extends State<BottomNavBarScreens> {
     Likes(),
     ChatScreen(),
     Profile(),
-    PeopleMatches(),
   ];
 
   void onTabTapped(int index) {
@@ -108,134 +107,96 @@ class _BottomNavBarScreensState extends State<BottomNavBarScreens> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 28.0, left: 20, right: 20, bottom: 10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    setState(() {});
-                  },
+          _currentIndex != 2
+              ? Padding(
+                  padding: const EdgeInsets.only(top: 28.0, left: 20, right: 20, bottom: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => PeopleMatches()));
+                        },
+                        child: const Text(
+                          'Matches',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromRGBO(99, 107, 113, 1),
+                            fontSize: 17,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 0,
+                      ),
+                      Container(
+                        height: 20,
+                        decoration: const BoxDecoration(
+                          border: Border(
+                            right: BorderSide(
+                              color: Color.fromRGBO(99, 107, 113, 1),
+                              width: 1.0,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Row(
+                        children: [
+                          GestureDetector(
+                            onTap: () {},
+                            child: const Text(
+                              'New Members',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 17,
+                                color: Color.fromRGBO(255, 0, 127, 1),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 25,
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => Filter()));
+                            },
+                            child: const Icon(
+                              Icons.filter_list_sharp,
+                              size: 30,
+                              color: Color.fromRGBO(255, 0, 127, 1),
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                )
+              : SizedBox.shrink(),
+          _currentIndex != 2
+              ? const Padding(
+                  padding: EdgeInsets.only(left: 10.0, bottom: 10),
                   child: Text(
-                    'Matches',
+                    'Spotlight',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Color.fromRGBO(99, 107, 113, 1),
-                      fontSize: 17,
+                      fontSize: 12,
                     ),
                   ),
-                ),
-                SizedBox(
-                  width: 0,
-                ),
-                Container(
-                  height: 20,
-                  decoration: BoxDecoration(
-                    border: Border(
-                      right: BorderSide(
-                        color: Color.fromRGBO(99, 107, 113, 1),
-                        width: 1.0,
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
+                )
+              : SizedBox.shrink(),
+          _currentIndex != 2
+              ? Container(
+                  height: 67,
+                  // color: Colors.red,
+                  padding: EdgeInsets.symmetric(horizontal: 5),
+                  margin: EdgeInsets.only(bottom: 20),
                   child: Row(
                     children: [
                       GestureDetector(
                         onTap: () {},
-                        child: Text(
-                          'New Members',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 17,
-                            color: Color.fromRGBO(255, 0, 127, 1),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 25,
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => Filter()));
-                        },
-                        child: Icon(
-                          Icons.sort_outlined,
-                          size: 30,
-                          color: Color.fromRGBO(255, 0, 127, 1),
-                        ),
-                      ),
-                    ],
-                  ),
-                )
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 10.0, bottom: 10),
-            child: Text(
-              'Spotlight',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Color.fromRGBO(99, 107, 113, 1),
-                fontSize: 12,
-              ),
-            ),
-          ),
-          Container(
-            height: 67,
-            // color: Colors.red,
-            padding: EdgeInsets.symmetric(horizontal: 5),
-            margin: EdgeInsets.only(bottom: 20),
-            child: Row(
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => NotificationScreen()));
-                  },
-                  child: Container(
-                    margin: EdgeInsets.only(right: 10),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          width: 50,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(50),
-                            // color: Color.fromRGBO(255, 229, 242, 1),
-                          ),
-                          child: const CircleAvatar(
-                            backgroundColor: Color.fromRGBO(255, 229, 242, 1),
-                            child: Icon(
-                              Icons.add,
-                              size: 25,
-                              color: Color.fromRGBO(255, 0, 127, 1),
-                            ),
-                          ),
-                        ),
-                        const Text(
-                          'Add me',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Color.fromRGBO(99, 107, 113, 1),
-                            fontSize: 11,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Container(
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: 8,
-                      itemBuilder: (context, index) => Padding(
-                        padding: const EdgeInsets.only(right: 10.0),
                         child: Container(
+                          margin: EdgeInsets.only(right: 10),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -243,17 +204,20 @@ class _BottomNavBarScreensState extends State<BottomNavBarScreens> {
                                 width: 50,
                                 height: 50,
                                 decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color: Color.fromRGBO(255, 229, 242, 1),
-                                  ),
                                   borderRadius: BorderRadius.circular(50),
+                                  // color: Color.fromRGBO(255, 229, 242, 1),
                                 ),
                                 child: const CircleAvatar(
-                                  backgroundImage: AssetImage('images/image1.jpg'),
+                                  backgroundColor: Color.fromRGBO(255, 229, 242, 1),
+                                  child: Icon(
+                                    Icons.add,
+                                    size: 25,
+                                    color: Color.fromRGBO(255, 0, 127, 1),
+                                  ),
                                 ),
                               ),
                               const Text(
-                                'Scarlet',
+                                'Add me',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   color: Color.fromRGBO(99, 107, 113, 1),
@@ -264,12 +228,47 @@ class _BottomNavBarScreensState extends State<BottomNavBarScreens> {
                           ),
                         ),
                       ),
-                    ),
+                      Expanded(
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: 8,
+                          itemBuilder: (context, index) => Padding(
+                            padding: const EdgeInsets.only(right: 10.0),
+                            child: Container(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Container(
+                                    width: 50,
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                        color: Color.fromRGBO(255, 229, 242, 1),
+                                      ),
+                                      borderRadius: BorderRadius.circular(50),
+                                    ),
+                                    child: const CircleAvatar(
+                                      backgroundImage: AssetImage('images/image1.jpg'),
+                                    ),
+                                  ),
+                                  const Text(
+                                    'Scarlet',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Color.fromRGBO(99, 107, 113, 1),
+                                      fontSize: 11,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-              ],
-            ),
-          ),
+                )
+              : SizedBox.shrink(),
           Expanded(
             child: _children[_currentIndex],
           )

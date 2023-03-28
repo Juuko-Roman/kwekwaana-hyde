@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:kwekwana/models/chat_message.dart';
 
 import '../models/notifications_model.dart';
+import 'notification_screen.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({Key? key}) : super(key: key);
@@ -102,7 +103,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    setState(() {});
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => NotificationScreen()));
                   },
                   child: Text(
                     'Notifications',
@@ -261,15 +262,15 @@ class _NotificationsListState extends State<NotificationsList> {
                                   children: [
                                     Text('6:30 Am'),
                                     Container(
-                                      padding: EdgeInsets.all(1),
+                                      padding: EdgeInsets.symmetric(horizontal: 7),
                                       decoration: BoxDecoration(
                                         color: Color.fromRGBO(255, 0, 127, 1),
                                         borderRadius: BorderRadius.circular(10),
                                       ),
                                       constraints: const BoxConstraints(
-                                        minWidth: 20,
-                                        minHeight: 20,
-                                      ),
+                                          // minWidth: 20,
+                                          // minHeight: 20,
+                                          ),
                                       child: Text(
                                         '1',
                                         style: const TextStyle(

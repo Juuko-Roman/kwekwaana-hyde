@@ -25,7 +25,7 @@ class _HomeLandingScreenState extends State<HomeLandingScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  height: 625,
+                  height: 550,
                   // color: Colors.red,
                   child: Stack(
                     children: [
@@ -35,14 +35,14 @@ class _HomeLandingScreenState extends State<HomeLandingScreen> {
                           left: 2,
                           right: 2,
                         ),
-                        height: 500,
+                        height: 420,
                         width: double.infinity,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                           color: Colors.blue,
                           image: DecorationImage(
                             image: AssetImage('images/pic2.jpeg'),
-                            fit: BoxFit.fill,
+                            fit: BoxFit.cover,
                           ),
                         ),
                       ),
