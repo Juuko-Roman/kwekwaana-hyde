@@ -24,7 +24,6 @@ class _ChatInBoxState extends State<ChatInBox> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       body: Column(
         children: [
           Card(
@@ -166,60 +165,57 @@ class _ChatInBoxState extends State<ChatInBox> {
               ),
             ),
           ),
-          Align(
-            alignment: Alignment.bottomLeft,
-            child: Container(
-              padding: EdgeInsets.only(left: 10, bottom: 10, top: 10),
-              height: 60,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Color.fromRGBO(245, 245, 245, 1),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Row(
-                children: <Widget>[
-                  GestureDetector(
-                    onTap: () {},
-                    child: Container(
-                      height: 30,
-                      width: 30,
-                      decoration: BoxDecoration(
-                        color: Color.fromRGBO(255, 0, 127, 0.15),
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      child: Icon(
-                        Icons.attachment,
-                        color: Color.fromRGBO(255, 0, 127, 1),
-                        size: 20,
-                      ),
+          Container(
+            padding: EdgeInsets.only(left: 10, bottom: 10, top: 10),
+            height: 60,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: Color.fromRGBO(245, 245, 245, 1),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Row(
+              children: <Widget>[
+                GestureDetector(
+                  onTap: () {},
+                  child: Container(
+                    height: 30,
+                    width: 30,
+                    decoration: BoxDecoration(
+                      color: Color.fromRGBO(255, 0, 127, 0.15),
+                      borderRadius: BorderRadius.circular(30),
                     ),
-                  ),
-                  SizedBox(
-                    width: 15,
-                  ),
-                  Expanded(
-                    child: TextField(
-                      decoration: InputDecoration(
-                          hintText: "Type your message",
-                          hintStyle: TextStyle(color: Colors.black54, fontSize: 15),
-                          border: InputBorder.none),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 15,
-                  ),
-                  FloatingActionButton(
-                    onPressed: () {},
                     child: Icon(
-                      Icons.send,
+                      Icons.attachment,
                       color: Color.fromRGBO(255, 0, 127, 1),
-                      size: 18,
+                      size: 20,
                     ),
-                    backgroundColor: Color.fromRGBO(255, 0, 127, 0.15),
-                    elevation: 0,
                   ),
-                ],
-              ),
+                ),
+                SizedBox(
+                  width: 15,
+                ),
+                Expanded(
+                  child: TextField(
+                    decoration: InputDecoration(
+                        hintText: "Type your message",
+                        hintStyle: TextStyle(color: Colors.black54, fontSize: 15),
+                        border: InputBorder.none),
+                  ),
+                ),
+                SizedBox(
+                  width: 15,
+                ),
+                FloatingActionButton(
+                  onPressed: () {},
+                  child: Icon(
+                    Icons.send,
+                    color: Color.fromRGBO(255, 0, 127, 1),
+                    size: 18,
+                  ),
+                  backgroundColor: Color.fromRGBO(255, 0, 127, 0.15),
+                  elevation: 0,
+                ),
+              ],
             ),
           ),
         ],

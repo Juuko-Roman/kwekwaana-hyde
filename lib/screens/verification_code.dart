@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'enable_location.dart';
 
@@ -156,8 +157,16 @@ class _VerificationCodeState extends State<VerificationCode> {
                             controller: firstInputController,
                             textAlign: TextAlign.center,
                             cursorColor: Color.fromRGBO(245, 167, 206, 1),
-                            keyboardType: TextInputType.none,
-                            onChanged: (value) {},
+                            keyboardType: TextInputType.number,
+                            inputFormatters: [
+                              LengthLimitingTextInputFormatter(1),
+                              FilteringTextInputFormatter.digitsOnly,
+                            ],
+                            onChanged: (value) {
+                              if (value.length == 1) {
+                                FocusScope.of(context).nextFocus();
+                              }
+                            },
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 25,
@@ -190,8 +199,16 @@ class _VerificationCodeState extends State<VerificationCode> {
                             controller: secondInputController,
                             textAlign: TextAlign.center,
                             cursorColor: Color.fromRGBO(245, 167, 206, 1),
-                            keyboardType: TextInputType.none,
-                            onChanged: (value) {},
+                            keyboardType: TextInputType.number,
+                            inputFormatters: [
+                              LengthLimitingTextInputFormatter(1),
+                              FilteringTextInputFormatter.digitsOnly,
+                            ],
+                            onChanged: (value) {
+                              if (value.length == 1) {
+                                FocusScope.of(context).nextFocus();
+                              }
+                            },
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 25,
@@ -227,8 +244,16 @@ class _VerificationCodeState extends State<VerificationCode> {
                             controller: thirdInputController,
                             textAlign: TextAlign.center,
                             cursorColor: Color.fromRGBO(245, 167, 206, 1),
-                            keyboardType: TextInputType.none,
-                            onChanged: (value) {},
+                            keyboardType: TextInputType.number,
+                            inputFormatters: [
+                              LengthLimitingTextInputFormatter(1),
+                              FilteringTextInputFormatter.digitsOnly,
+                            ],
+                            onChanged: (value) {
+                              if (value.length == 1) {
+                                FocusScope.of(context).nextFocus();
+                              }
+                            },
                             style: TextStyle(
                               color: Color.fromRGBO(246, 179, 188, 1),
                               fontSize: 25,
@@ -264,8 +289,16 @@ class _VerificationCodeState extends State<VerificationCode> {
                             controller: fourthInputController,
                             textAlign: TextAlign.center,
                             cursorColor: Color.fromRGBO(245, 167, 206, 1),
-                            keyboardType: TextInputType.none,
-                            onChanged: (value) {},
+                            keyboardType: TextInputType.number,
+                            inputFormatters: [
+                              LengthLimitingTextInputFormatter(1),
+                              FilteringTextInputFormatter.digitsOnly,
+                            ],
+                            onChanged: (value) {
+                              if (value.length == 1) {
+                                FocusScope.of(context).nextFocus();
+                              }
+                            },
                             style: TextStyle(
                               color: Color.fromRGBO(234, 232, 236, 1),
                               fontSize: 25,

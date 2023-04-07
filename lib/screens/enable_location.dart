@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
+import '../services/location_settings.dart';
 import 'gender_selection.dart';
 
 class EnableLocation extends StatefulWidget {
@@ -10,6 +12,7 @@ class EnableLocation extends StatefulWidget {
 }
 
 class _EnableLocationState extends State<EnableLocation> {
+  ActualLocation MyLocation = ActualLocation();
   bool showMoreDetails = true;
   @override
   Widget build(BuildContext context) {
@@ -182,7 +185,14 @@ class _EnableLocationState extends State<EnableLocation> {
               borderRadius: BorderRadius.circular(50.0),
               child: MaterialButton(
                 onPressed: () async {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => GenderSelection()));
+                  MyLocation.getActualLocation(context).then((value) {
+                    print('vaue is $value');
+                    if (value != "not allowed" && value != 'not allowed for good') {
+                      context.push('/genderSelection');
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Location not enabled')));
+                    }
+                  });
                 },
                 height: 42.0,
                 minWidth: 350,

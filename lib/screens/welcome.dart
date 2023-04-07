@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import 'home.dart';
 
@@ -16,7 +17,7 @@ class WelcomeScreen extends StatelessWidget {
           ),
           FloatingActionButton(
             onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
+              context.push('/home');
             },
             child: Icon(Icons.keyboard_arrow_right),
           )

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:kwekwana/screens/signup.dart';
 
 import 'login.dart';
@@ -68,7 +69,7 @@ class HomeScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(50.0),
                   child: MaterialButton(
                     onPressed: () async {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
+                      context.push('/login');
                     },
                     minWidth: 350,
                     height: 42.0,
@@ -89,7 +90,7 @@ class HomeScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(50.0),
                   child: MaterialButton(
                     onPressed: () async {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => SignUp()));
+                      GoRouter.of(context).push('/signup');
                     },
                     height: 42.0,
                     minWidth: 350,

@@ -8,6 +8,8 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
+  bool value = false;
+  bool hideId = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -121,10 +123,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               'App Notification',
                               style: TextStyle(fontSize: 16),
                             ),
-                            Icon(
-                              Icons.arrow_forward_ios_rounded,
-                              size: 18,
-                              color: Color.fromRGBO(255, 0, 127, 1),
+                            Switch(
+                              activeColor: Color.fromRGBO(255, 0, 127, 1),
+                              activeTrackColor: Color.fromRGBO(255, 0, 127, 0.5),
+                              value: value,
+                              onChanged: (value1) {
+                                setState(() {
+                                  this.value = value1;
+                                });
+                              },
                             ),
                           ],
                         ),
@@ -138,10 +145,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               'Hide Identity',
                               style: TextStyle(fontSize: 16),
                             ),
-                            Icon(
-                              Icons.arrow_forward_ios_rounded,
-                              size: 18,
-                              color: Color.fromRGBO(255, 0, 127, 1),
+                            Switch(
+                              value: hideId,
+                              activeColor: Color.fromRGBO(255, 0, 127, 1),
+                              activeTrackColor: Color.fromRGBO(255, 0, 127, 0.5),
+                              onChanged: (value1) {
+                                setState(() {
+                                  this.hideId = value1;
+                                });
+                              },
                             ),
                           ],
                         ),

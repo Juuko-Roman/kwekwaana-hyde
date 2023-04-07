@@ -14,6 +14,8 @@ class _GenderSelectionState extends State<GenderSelection> {
   bool male2Tapped = false;
   bool female1Tapped = false;
   bool female2Tapped = false;
+  String selectedGender = '';
+  String selectedLookingForGender = '';
 
   @override
   Widget build(BuildContext context) {
@@ -100,6 +102,13 @@ class _GenderSelectionState extends State<GenderSelection> {
                     onTap: () {
                       setState(() {
                         male1Tapped = !male1Tapped;
+
+                        if (male1Tapped) {
+                          selectedGender = 'Male';
+                          female1Tapped = false;
+                        } else {
+                          selectedGender = '';
+                        }
                       });
                     },
                     child: Container(
@@ -139,6 +148,12 @@ class _GenderSelectionState extends State<GenderSelection> {
                     onTap: () {
                       setState(() {
                         female1Tapped = !female1Tapped;
+                        if (female1Tapped) {
+                          male1Tapped = false;
+                          selectedGender = 'Female';
+                        } else {
+                          selectedGender = '';
+                        }
                       });
                     },
                     child: Container(
@@ -199,6 +214,12 @@ class _GenderSelectionState extends State<GenderSelection> {
                     onTap: () {
                       setState(() {
                         male2Tapped = !male2Tapped;
+                        if (male2Tapped) {
+                          female2Tapped = false;
+                          selectedLookingForGender = 'Male';
+                        } else {
+                          selectedLookingForGender = '';
+                        }
                       });
                     },
                     child: Container(
@@ -238,6 +259,12 @@ class _GenderSelectionState extends State<GenderSelection> {
                     onTap: () {
                       setState(() {
                         female2Tapped = !female2Tapped;
+                        if (female2Tapped) {
+                          male2Tapped = false;
+                          selectedLookingForGender = 'Female';
+                        } else {
+                          selectedLookingForGender = '';
+                        }
                       });
                     },
                     child: Container(
@@ -314,10 +341,17 @@ class _GenderSelectionState extends State<GenderSelection> {
               borderRadius: BorderRadius.circular(50.0),
               child: MaterialButton(
                 onPressed: () async {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Interests()),
-                  );
+                  print('selected gender is $selectedGender');
+                  print('Looking for  $selectedLookingForGender gender');
+                  if ((selectedGender == '' || selectedLookingForGender == '')) {
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(SnackBar(content: Text('Ensure to select one of the options above')));
+                  } else {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Interests()),
+                    );
+                  }
                 },
                 height: 42.0,
                 minWidth: 400,

@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:kwekwana/screens/home_landing_screen.dart';
 
 import 'bottom_nav_bar_screens.dart';
@@ -12,6 +15,22 @@ class ProfilePic extends StatefulWidget {
 }
 
 class _ProfilePicState extends State<ProfilePic> {
+  File? _image;
+  File? _imageBig;
+  File? _image1;
+  File? _image2;
+  File? _image3;
+  Future<File?> getImage() async {
+    final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      _image = File(pickedFile.path);
+      return _image!;
+    } else {
+      print('No image selected.');
+      return null;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,25 +95,34 @@ class _ProfilePicState extends State<ProfilePic> {
                 ],
               ),
             ),
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                color: Colors.white,
-                boxShadow: const [
-                  BoxShadow(
-                    offset: Offset(0, 2),
-                    blurRadius: 6,
-                    color: Color.fromRGBO(200, 200, 200, 1),
-                  ),
-                ],
-              ),
-              width: 180,
-              height: 180,
-              margin: EdgeInsets.only(top: 15),
-              child: Icon(
-                Icons.photo_size_select_actual_outlined,
-                size: 140,
-                color: Color.fromRGBO(235, 235, 235, 1),
+            GestureDetector(
+              onTap: () async {
+                _imageBig = await getImage();
+                setState(() {});
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  color: Colors.white,
+                  image: _imageBig != null ? DecorationImage(image: FileImage(_imageBig!), fit: BoxFit.cover) : null,
+                  boxShadow: const [
+                    BoxShadow(
+                      offset: Offset(0, 2),
+                      blurRadius: 6,
+                      color: Color.fromRGBO(200, 200, 200, 1),
+                    ),
+                  ],
+                ),
+                width: 180,
+                height: 180,
+                margin: EdgeInsets.only(top: 15),
+                child: _imageBig == null
+                    ? Icon(
+                        Icons.photo_size_select_actual_outlined,
+                        size: 140,
+                        color: Color.fromRGBO(235, 235, 235, 1),
+                      )
+                    : SizedBox.shrink(),
               ),
             ),
             Stack(children: [
@@ -110,39 +138,75 @@ class _ProfilePicState extends State<ProfilePic> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      width: 100,
-                      height: 100,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: Colors.white,
-                      ),
-                      child: Icon(
-                        Icons.add,
-                        color: Color.fromRGBO(255, 0, 127, 1),
-                        size: 50,
+                    GestureDetector(
+                      onTap: () async {
+                        _image1 = await getImage();
+                        setState(() {});
+                      },
+                      child: Container(
+                        width: 100,
+                        height: 100,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: Colors.white,
+                          image:
+                              _image1 != null ? DecorationImage(image: FileImage(_image1!), fit: BoxFit.cover) : null,
+                        ),
+                        child: _image1 == null
+                            ? Icon(
+                                Icons.add,
+                                color: Color.fromRGBO(255, 0, 127, 1),
+                                size: 50,
+                              )
+                            : SizedBox.shrink(),
                       ),
                     ),
-                    Container(
-                      width: 100,
-                      height: 100,
-                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: Colors.white),
-                      child: Icon(
-                        Icons.add,
-                        color: Color.fromRGBO(255, 0, 127, 1),
-                        size: 50,
+                    GestureDetector(
+                      onTap: () async {
+                        _image2 = await getImage();
+                        setState(() {});
+                      },
+                      child: Container(
+                        width: 100,
+                        height: 100,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: Colors.white,
+                          image:
+                              _image2 != null ? DecorationImage(image: FileImage(_image2!), fit: BoxFit.cover) : null,
+                        ),
+                        child: _image2 == null
+                            ? Icon(
+                                Icons.add,
+                                color: Color.fromRGBO(255, 0, 127, 1),
+                                size: 50,
+                              )
+                            : SizedBox.shrink(),
                       ),
                     ),
-                    Container(
-                      width: 100,
-                      height: 100,
-                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: Colors.white),
-                      child: Icon(
-                        Icons.add,
-                        color: Color.fromRGBO(255, 0, 127, 1),
-                        size: 50,
+                    GestureDetector(
+                      onTap: () async {
+                        _image3 = await getImage();
+                        setState(() {});
+                      },
+                      child: Container(
+                        width: 100,
+                        height: 100,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: Colors.white,
+                          image:
+                              _image3 != null ? DecorationImage(image: FileImage(_image3!), fit: BoxFit.cover) : null,
+                        ),
+                        child: _image3 == null
+                            ? Icon(
+                                Icons.add,
+                                color: Color.fromRGBO(255, 0, 127, 1),
+                                size: 50,
+                              )
+                            : SizedBox.shrink(),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -166,10 +230,19 @@ class _ProfilePicState extends State<ProfilePic> {
                 borderRadius: BorderRadius.circular(50.0),
                 child: MaterialButton(
                   onPressed: () async {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => BottomNavBarScreens()),
-                    );
+                    if (_imageBig == null || _image1 == null || _image2 == null || _image3 == null) {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Photos above are needed')));
+                    } else {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => BottomNavBarScreens()),
+                      ).then((value) {
+                        _imageBig = null;
+                        _image1 = null;
+                        _image2 = null;
+                        _image3 = null;
+                      });
+                    }
                   },
                   height: 42.0,
                   minWidth: 400,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:kwekwana/screens/verification_code.dart';
+import '../globals/global_vars.dart';
 import 'airtel_mobile_money.dart';
 import 'country_screen.dart';
 import 'filter.dart';
@@ -21,8 +23,6 @@ class BottomNavBarScreens extends StatefulWidget {
 }
 
 class _BottomNavBarScreensState extends State<BottomNavBarScreens> {
-  int _currentIndex = 0;
-
   final List<Widget> _children = [
     HomeLandingScreen(),
     Likes(),
@@ -32,7 +32,7 @@ class _BottomNavBarScreensState extends State<BottomNavBarScreens> {
 
   void onTabTapped(int index) {
     setState(() {
-      _currentIndex = index;
+      currentIndex = index;
     });
   }
 
@@ -40,7 +40,7 @@ class _BottomNavBarScreensState extends State<BottomNavBarScreens> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
+        currentIndex: currentIndex,
         onTap: onTabTapped,
         type: BottomNavigationBarType.fixed,
         selectedLabelStyle: TextStyle(
@@ -107,7 +107,7 @@ class _BottomNavBarScreensState extends State<BottomNavBarScreens> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _currentIndex != 2
+          currentIndex != 2 && currentIndex != 3
               ? Padding(
                   padding: const EdgeInsets.only(top: 28.0, left: 20, right: 20, bottom: 10),
                   child: Row(
@@ -172,7 +172,7 @@ class _BottomNavBarScreensState extends State<BottomNavBarScreens> {
                   ),
                 )
               : SizedBox.shrink(),
-          _currentIndex != 2
+          currentIndex != 2 && currentIndex != 3
               ? const Padding(
                   padding: EdgeInsets.only(left: 10.0, bottom: 10),
                   child: Text(
@@ -185,7 +185,7 @@ class _BottomNavBarScreensState extends State<BottomNavBarScreens> {
                   ),
                 )
               : SizedBox.shrink(),
-          _currentIndex != 2
+          currentIndex != 2 && currentIndex != 3
               ? Container(
                   height: 67,
                   // color: Colors.red,
@@ -194,7 +194,9 @@ class _BottomNavBarScreensState extends State<BottomNavBarScreens> {
                   child: Row(
                     children: [
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          // Navigator.push(context, MaterialPageRoute(builder: (context) => SettingsScreen()));
+                        },
                         child: Container(
                           margin: EdgeInsets.only(right: 10),
                           child: Column(
@@ -270,7 +272,7 @@ class _BottomNavBarScreensState extends State<BottomNavBarScreens> {
                 )
               : SizedBox.shrink(),
           Expanded(
-            child: _children[_currentIndex],
+            child: _children[currentIndex],
           )
         ],
       ),

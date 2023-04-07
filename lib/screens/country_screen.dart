@@ -8,6 +8,7 @@ class CountryScreen extends StatefulWidget {
 }
 
 class _CountryScreenState extends State<CountryScreen> {
+  String selectedCountry = '';
   List<String> countries = [
     'Algeria',
     'Angora',
@@ -83,16 +84,24 @@ class _CountryScreenState extends State<CountryScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              '${countries[index]}',
-                              style: TextStyle(
-                                color: Color.fromRGBO(89, 97, 104, 1),
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18,
+                            ListTile(
+                              selectedColor: Colors.white,
+                              selectedTileColor: Color.fromRGBO(255, 83, 169, 1),
+                              textColor: Color.fromRGBO(89, 97, 104, 1),
+                              title: Text(
+                                '${countries[index]}',
+                                style: TextStyle(
+                                  // color:
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                ),
                               ),
-                            ),
-                            SizedBox(
-                              height: 20,
+                              onTap: () {
+                                setState(() {
+                                  selectedCountry = countries[index];
+                                });
+                              },
+                              selected: selectedCountry == countries[index],
                             ),
                             Divider(),
                           ],

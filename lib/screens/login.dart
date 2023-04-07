@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:go_router/go_router.dart';
 import 'package:kwekwana/screens/signup.dart';
 import 'package:kwekwana/screens/verification_code.dart';
+
+import '../services/firebase_auth.dart';
+import '../services/routes.dart';
+import '../widgets/formfield.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -10,6 +16,45 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final _authService = FirebaseAuthService();
+  final _formKey = GlobalKey<FormState>();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _numberController = TextEditingController();
+
+  void _handleLogin() async {
+    if (_formKey.currentState!.validate()) {
+      showDialog(
+        context: context,
+        builder: (ctxt) => WillPopScope(
+          onWillPop: () async => false,
+          child: Center(
+            child: SpinKitFadingCircle(
+              itemBuilder: (BuildContext ctxt, int index) {
+                return DecoratedBox(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(70),
+                    color: Colors.white,
+                  ),
+                );
+              },
+            ),
+          ),
+        ),
+      );
+      final email = _emailController.text.trim();
+      final password = _passwordController.text.trim();
+      final result = await _authService.signInWithEmailAndPassword(email, password);
+      Navigator.pop(context);
+      if (result != null) {
+        context.push('/enableLocation');
+      } else {
+        // login failed, show error message
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Invalid email or password')));
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +83,7 @@ class _LoginPageState extends State<LoginPage> {
           children: [
             GestureDetector(
               onTap: () {
-                Navigator.pop(context);
+                context.pop();
               },
               child: Container(
                 margin: EdgeInsets.fromLTRB(10, 0, 0, 40),
@@ -74,209 +119,99 @@ class _LoginPageState extends State<LoginPage> {
               ],
             ),
             Expanded(
-              child: ListView(
-                children: [
-                  Container(
-                    margin: const EdgeInsets.only(bottom: 20, left: 15, right: 15, top: 50),
-                    padding: const EdgeInsets.symmetric(horizontal: 15),
-                    height: 50,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(30),
-                      border: Border.all(color: Color.fromRGBO(255, 196, 225, 1)),
-                    ),
-                    child: Row(
-                      children: [
-                        Container(
-                          padding: EdgeInsets.all(5),
-                          decoration: BoxDecoration(
-                            color: Color.fromRGBO(255, 229, 242, 1),
-                            borderRadius: BorderRadius.circular(50),
-                          ),
-                          child: Icon(
-                            Icons.phone_enabled,
-                            color: Color.fromRGBO(255, 0, 127, 1),
-                            size: 25,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 20,
-                        ),
-                        Expanded(
-                          child: TextField(
-                            textAlign: TextAlign.left,
-                            onChanged: (value) {},
-                            decoration: const InputDecoration(
-                              border: InputBorder.none,
-                              hintText: 'Enter number',
-                              hintStyle: TextStyle(
-                                color: Color.fromRGBO(178, 178, 178, 1),
-                              ),
-                              // contentPadding: EdgeInsets.only(bottom: 10.0, left: 5.0),
+              child: Form(
+                key: _formKey,
+                child: ListView(
+                  children: [
+                    MyFormField(
+                        icon: Icons.phone_enabled,
+                        controller: _numberController,
+                        obscureText: false,
+                        errorMsg: "Please enter your number",
+                        hinttext: 'Enter number'),
+                    Container(
+                      margin: EdgeInsets.symmetric(horizontal: 20),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Divider(
+                              color: Color.fromRGBO(178, 178, 178, 1),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.symmetric(horizontal: 20),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Divider(
-                            color: Color.fromRGBO(178, 178, 178, 1),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 25),
-                          child: Text(
-                            "or email",
-                          ),
-                        ),
-                        Expanded(
-                          child: Divider(
-                            color: Color.fromRGBO(178, 178, 178, 1),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(bottom: 20, left: 15, right: 15, top: 10),
-                    padding: const EdgeInsets.symmetric(horizontal: 15),
-                    height: 50,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(30),
-                      border: Border.all(color: Color.fromRGBO(255, 196, 225, 1)),
-                    ),
-                    child: Row(
-                      children: [
-                        Container(
-                          padding: EdgeInsets.all(5),
-                          decoration: BoxDecoration(
-                            color: Color.fromRGBO(255, 229, 242, 1),
-                            borderRadius: BorderRadius.circular(50),
-                          ),
-                          child: Icon(
-                            Icons.email,
-                            color: Color.fromRGBO(255, 0, 127, 1),
-                            size: 25,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 20,
-                        ),
-                        Expanded(
-                          child: TextField(
-                            textAlign: TextAlign.left,
-                            onChanged: (value) {},
-                            decoration: const InputDecoration(
-                              border: InputBorder.none,
-                              hintText: 'Enter user name',
-                              hintStyle: TextStyle(
-                                color: Color.fromRGBO(178, 178, 178, 1),
-                              ),
-                              // contentPadding: EdgeInsets.only(bottom: 10.0, left: 5.0),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 25),
+                            child: Text(
+                              "or email",
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(bottom: 20, left: 15, right: 15, top: 10),
-                    padding: const EdgeInsets.symmetric(horizontal: 15),
-                    height: 50,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(30),
-                      border: Border.all(color: Color.fromRGBO(255, 196, 225, 1)),
-                    ),
-                    child: Row(
-                      children: [
-                        Container(
-                          padding: EdgeInsets.all(5),
-                          decoration: BoxDecoration(
-                            color: Color.fromRGBO(255, 229, 242, 1),
-                            borderRadius: BorderRadius.circular(50),
-                          ),
-                          child: Icon(
-                            Icons.remove_red_eye,
-                            color: Color.fromRGBO(255, 0, 127, 1),
-                            size: 25,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 20,
-                        ),
-                        Expanded(
-                          child: TextField(
-                            textAlign: TextAlign.left,
-                            onChanged: (value) {},
-                            decoration: const InputDecoration(
-                              border: InputBorder.none,
-                              hintText: 'Enter password',
-                              hintStyle: TextStyle(
-                                color: Color.fromRGBO(178, 178, 178, 1),
-                              ),
-                              // contentPadding: EdgeInsets.only(bottom: 10.0, left: 5.0),
+                          Expanded(
+                            child: Divider(
+                              color: Color.fromRGBO(178, 178, 178, 1),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                    child: Material(
-                      elevation: 1.5,
-                      borderRadius: BorderRadius.circular(50.0),
-                      child: MaterialButton(
-                        onPressed: () async {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => VerificationCode()),
-                          );
-                        },
-                        height: 42.0,
-                        minWidth: 400,
-                        child: const Text(
-                          'Log in',
-                          style: TextStyle(
-                            color: Color.fromRGBO(255, 83, 169, 1),
-                            fontSize: 16,
+                    MyFormField(
+                        icon: Icons.email,
+                        controller: _emailController,
+                        obscureText: false,
+                        errorMsg: "Please enter your email",
+                        hinttext: 'enter your email'),
+                    MyFormField(
+                        icon: Icons.remove_red_eye,
+                        controller: _passwordController,
+                        obscureText: true,
+                        errorMsg: "Please enter your password",
+                        hinttext: 'Enter password'),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                      child: Material(
+                        elevation: 1.5,
+                        borderRadius: BorderRadius.circular(50.0),
+                        child: MaterialButton(
+                          onPressed: _handleLogin,
+                          height: 42.0,
+                          minWidth: 400,
+                          child: const Text(
+                            'Log in',
+                            style: TextStyle(
+                              color: Color.fromRGBO(255, 83, 169, 1),
+                              fontSize: 16,
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(left: 15, top: 40),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Don\'t have an account?',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => SignUp()));
-                          },
-                          child: Text(
-                            'Sign Up',
-                            style: TextStyle(
-                              color: Color.fromRGBO(255, 0, 127, 1),
-                              decoration: TextDecoration.underline,
+                    Container(
+                      margin: EdgeInsets.only(left: 15, top: 40),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Don\'t have an account?',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => SignUp()));
+                            },
+                            child: Text(
+                              'Sign Up',
+                              style: TextStyle(
+                                color: Color.fromRGBO(255, 0, 127, 1),
+                                decoration: TextDecoration.underline,
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  )
-                ],
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               ),
             )
           ],

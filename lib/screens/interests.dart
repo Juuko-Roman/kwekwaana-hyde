@@ -28,6 +28,7 @@ class _InterestsState extends State<Interests> {
     {'icon': Icons.no_drinks_rounded, 'desc': 'Drink', 'istapped': false},
     {'icon': Icons.videogame_asset_outlined, 'desc': 'Video games', 'istapped': false},
   ];
+  List<String> selectedOptions = [];
 
   @override
   Widget build(BuildContext context) {
@@ -119,10 +120,11 @@ class _InterestsState extends State<Interests> {
                       return GestureDetector(
                         onTap: () {
                           setState(() {
-                            if (listData[index]['istapped'] == false) {
-                              listData[index]['istapped'] = true;
+                            listData[index]['istapped'] = !listData[index]['istapped'];
+                            if (listData[index]['istapped']) {
+                              selectedOptions.add(listData[index]['desc']);
                             } else {
-                              listData[index]['istapped'] = false;
+                              selectedOptions.remove(listData[index]['desc']);
                             }
                           });
                         },
@@ -167,10 +169,15 @@ class _InterestsState extends State<Interests> {
                 borderRadius: BorderRadius.circular(50.0),
                 child: MaterialButton(
                   onPressed: () async {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => ProfilePic()),
-                    );
+                    if (selectedOptions.length < 1) {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Select atleast one option')));
+                    } else {
+                      print('selectedOptions are $selectedOptions');
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => ProfilePic()),
+                      );
+                    }
                   },
                   height: 42.0,
                   minWidth: 400,
