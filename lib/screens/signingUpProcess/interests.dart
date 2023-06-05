@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:kwekwana/screens/home_landing_screen.dart';
-import 'package:kwekwana/screens/profile_pic.dart';
+import 'package:kwekwana/screens/signingUpProcess/profile_pic.dart';
+import 'package:kwekwana/widgets/capsule.dart';
 
-import 'bottom_nav_bar_screens.dart';
+import '../../widgets/backbutton.dart';
+import '../bottom_nav_bar_screens.dart';
 
 class Interests extends StatefulWidget {
   const Interests({Key? key}) : super(key: key);
@@ -56,37 +58,12 @@ class _InterestsState extends State<Interests> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            GestureDetector(
-              onTap: () {
-                Navigator.pop(context);
-              },
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Container(
-                    margin: EdgeInsets.fromLTRB(10, 0, 0, 10),
-                    padding: EdgeInsets.all(5),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        width: 2,
-                        color: Colors.white,
-                      ),
-                      borderRadius: BorderRadius.circular(50),
-                    ),
-                    child: Container(
-                      padding: EdgeInsets.all(15),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(50),
-                      ),
-                      child: Icon(
-                        Icons.arrow_back,
-                        color: Color.fromRGBO(255, 0, 127, 1),
-                        size: 25,
-                      ),
-                    ),
-                  ),
-                ],
+            Align(
+              alignment: Alignment.centerLeft,
+              child: MyBackButton(
+                onTap: () {
+                  Navigator.pop(context);
+                },
               ),
             ),
             Container(
@@ -128,35 +105,10 @@ class _InterestsState extends State<Interests> {
                             }
                           });
                         },
-                        child: Container(
-                          width: 163,
-                          padding: EdgeInsets.symmetric(horizontal: 15),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(50),
-                            color: listData[index]['istapped'] == true ? Color.fromRGBO(255, 0, 127, 1) : Colors.white,
-                            border: Border.all(
-                              color: Color.fromRGBO(240, 240, 240, 1),
-                            ),
-                          ),
-                          child: Row(
-                            children: [
-                              Icon(
-                                listData[index]['icon'] as IconData,
-                                color:
-                                    listData[index]['istapped'] == true ? Colors.white : Color.fromRGBO(255, 0, 127, 1),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Text(
-                                listData[index]['desc'].toString(),
-                                style: TextStyle(
-                                  color: listData[index]['istapped'] == true ? Colors.white : Colors.black,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
+                        child: Capsule(
+                            isTapped: listData[index]['istapped'],
+                            iconData: listData[index]['icon'] as IconData,
+                            text: listData[index]['desc'].toString()),
                       );
                     },
                   )),

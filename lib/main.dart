@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp.router(
       theme: ThemeData(
         fontFamily: 'poppins',
+        primaryColor: Color.fromRGBO(255, 0, 127, 1),
       ),
       debugShowCheckedModeBanner: false,
       routerConfig: AppRoutes.goRouter,

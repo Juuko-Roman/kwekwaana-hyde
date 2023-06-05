@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:kwekwana/screens/edit_profile.dart';
+import 'package:kwekwana/screens/payments/packages_available.dart';
+
+import 'auth/login.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({Key? key}) : super(key: key);
@@ -10,8 +14,31 @@ class SettingsScreen extends StatefulWidget {
 class _SettingsScreenState extends State<SettingsScreen> {
   bool value = false;
   bool hideId = false;
+
   @override
   Widget build(BuildContext context) {
+    List<List<Map<String, dynamic>>> settingsItems = [
+      [
+        {
+          'name': 'Edit Profile',
+          'trailingIcon': Icons.arrow_forward_ios_rounded,
+          'onTap': () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => EditProfile()));
+          },
+        },
+        {'name': 'Change Password', 'trailingIcon': Icons.arrow_forward_ios_rounded, 'onTap': () {}}
+      ],
+      [
+        {'name': 'Language', 'trailingIcon': Icons.arrow_forward_ios_rounded, 'onTap': () {}},
+        {'name': 'App Notification', 'trailingIcon': Icons.arrow_forward_ios_rounded, 'onTap': () {}},
+        {'name': 'Hide Identity', 'trailingIcon': Icons.arrow_forward_ios_rounded, 'onTap': () {}},
+      ],
+      [
+        {'name': 'Get Help', 'trailingIcon': Icons.arrow_forward_ios_rounded, 'onTap': () {}},
+        {'name': 'Terms and Conditions', 'trailingIcon': Icons.arrow_forward_ios_rounded, 'onTap': () {}},
+        {'name': 'Privacy Policy', 'trailingIcon': Icons.arrow_forward_ios_rounded, 'onTap': () {}},
+      ]
+    ];
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -54,168 +81,53 @@ class _SettingsScreenState extends State<SettingsScreen> {
           Expanded(
             child: ListView(
               children: [
-                Card(
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 15.0, right: 15, top: 15, bottom: 15),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Edit Profile',
-                              style: TextStyle(fontSize: 16),
+                ...List.generate(
+                  settingsItems.length,
+                  (index) => Card(
+                    child: Column(
+                      children: [
+                        ...List.generate(
+                          settingsItems[index].length,
+                          (indexInner) => Padding(
+                            padding: const EdgeInsets.only(left: 15.0, right: 15, top: 15, bottom: 15),
+                            child: GestureDetector(
+                              onTap: settingsItems[index][indexInner]['onTap'],
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    settingsItems[index][indexInner]['name'],
+                                    style: TextStyle(fontSize: 16),
+                                  ),
+                                  index != 2
+                                      ? Icon(
+                                          settingsItems[index][indexInner]['trailingIcon'],
+                                          size: 18,
+                                          color: Color.fromRGBO(255, 0, 127, 1),
+                                        )
+                                      : indexInner != 0
+                                          ? Switch(
+                                              activeColor: Color.fromRGBO(255, 0, 127, 1),
+                                              activeTrackColor: Color.fromRGBO(255, 0, 127, 0.5),
+                                              value: value,
+                                              onChanged: (value1) {
+                                                setState(() {
+                                                  this.value = value1;
+                                                });
+                                              },
+                                            )
+                                          : Icon(
+                                              settingsItems[index][indexInner]['trailingIcon'],
+                                              size: 18,
+                                              color: Color.fromRGBO(255, 0, 127, 1),
+                                            ),
+                                ],
+                              ),
                             ),
-                            Icon(
-                              Icons.arrow_forward_ios_rounded,
-                              size: 18,
-                              color: Color.fromRGBO(255, 0, 127, 1),
-                            ),
-                          ],
+                          ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Change Password',
-                              style: TextStyle(fontSize: 16),
-                            ),
-                            Icon(
-                              Icons.arrow_forward_ios_rounded,
-                              size: 18,
-                              color: Color.fromRGBO(255, 0, 127, 1),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Card(
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Language',
-                              style: TextStyle(fontSize: 16),
-                            ),
-                            Icon(
-                              Icons.arrow_forward_ios_rounded,
-                              size: 18,
-                              color: Color.fromRGBO(255, 0, 127, 1),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'App Notification',
-                              style: TextStyle(fontSize: 16),
-                            ),
-                            Switch(
-                              activeColor: Color.fromRGBO(255, 0, 127, 1),
-                              activeTrackColor: Color.fromRGBO(255, 0, 127, 0.5),
-                              value: value,
-                              onChanged: (value1) {
-                                setState(() {
-                                  this.value = value1;
-                                });
-                              },
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Hide Identity',
-                              style: TextStyle(fontSize: 16),
-                            ),
-                            Switch(
-                              value: hideId,
-                              activeColor: Color.fromRGBO(255, 0, 127, 1),
-                              activeTrackColor: Color.fromRGBO(255, 0, 127, 0.5),
-                              onChanged: (value1) {
-                                setState(() {
-                                  this.hideId = value1;
-                                });
-                              },
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Card(
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Get Help',
-                              style: TextStyle(fontSize: 16),
-                            ),
-                            Icon(
-                              Icons.arrow_forward_ios_rounded,
-                              size: 18,
-                              color: Color.fromRGBO(255, 0, 127, 1),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Terms and Conditions',
-                              style: TextStyle(fontSize: 16),
-                            ),
-                            Icon(
-                              Icons.arrow_forward_ios_rounded,
-                              size: 18,
-                              color: Color.fromRGBO(255, 0, 127, 1),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Privacy Policy',
-                              style: TextStyle(fontSize: 16),
-                            ),
-                            Icon(
-                              Icons.arrow_forward_ios_rounded,
-                              size: 18,
-                              color: Color.fromRGBO(255, 0, 127, 1),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
                 Card(
@@ -238,20 +150,25 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15),
-                        child: Card(
-                          elevation: 4,
-                          color: Color.fromRGBO(245, 245, 245, 1),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.symmetric(vertical: 28.0),
-                                child: Text(
-                                  'Payments',
-                                  style: TextStyle(fontSize: 16),
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => PackagesAvailable()));
+                          },
+                          child: Card(
+                            elevation: 4,
+                            color: Color.fromRGBO(245, 245, 245, 1),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(vertical: 28.0),
+                                  child: Text(
+                                    'Payments',
+                                    style: TextStyle(fontSize: 16),
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -263,7 +180,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           borderRadius: BorderRadius.circular(50.0),
                           child: MaterialButton(
                             onPressed: () async {
-                              // Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
                             },
                             minWidth: 350,
                             height: 35.0,

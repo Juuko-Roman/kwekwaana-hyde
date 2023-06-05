@@ -3,6 +3,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:kwekwana/globals/global_vars.dart';
 
 import '../models/notifications_model.dart';
+import '../widgets/navBarWidget.dart';
+import '../widgets/notificationList.dart';
 import 'bottom_nav_bar_screens.dart';
 import 'chat_screen.dart';
 
@@ -19,64 +21,43 @@ class _NotificationScreenState extends State<NotificationScreen> {
       notificationContent: 'viewed your profile',
       date: 'May-23-2023',
       time: '06:23',
-      imageURL: 'images/pic2.jpeg',
-      notifier: 'Scarlet',
+      imageURL: 'images/girls1.jpeg',
+      notifier: 'Scarlet Adams',
     ),
     Notifications(
       notificationContent: 'Liked you',
       date: 'May-23-2023',
       time: '06:23',
       imageURL: 'images/person_pic.jpeg',
-      notifier: 'Scarlet',
+      notifier: 'Brandon Lee',
     ),
     Notifications(
       notificationContent: 'Liked you',
       date: 'May-23-2023',
       time: '06:23',
       imageURL: 'images/image1.jpg',
-      notifier: 'Scarlet',
+      notifier: 'Annabella Christe',
     ),
     Notifications(
       notificationContent: 'viewed your profile',
       date: 'May-23-2023',
       time: '06:23',
       imageURL: 'images/pic2.jpeg',
-      notifier: 'Scarlet',
+      notifier: 'Princess Kayra',
     ),
     Notifications(
       notificationContent: 'Liked you',
       date: 'May-23-2023',
       time: '06:23',
-      imageURL: 'images/person_pic.jpeg',
-      notifier: 'Scarlet',
+      imageURL: 'images/boys2.jpeg',
+      notifier: 'Victor Don',
     ),
     Notifications(
       notificationContent: 'Liked you',
       date: 'May-23-2023',
       time: '06:23',
-      imageURL: 'images/image1.jpg',
-      notifier: 'Scarlet',
-    ),
-    Notifications(
-      notificationContent: 'viewed your profile',
-      date: 'May-23-2023',
-      time: '06:23',
-      imageURL: 'images/image1.jpg',
-      notifier: 'Scarlet',
-    ),
-    Notifications(
-      notificationContent: 'Liked you',
-      date: 'May-23-2023',
-      time: '06:23',
-      imageURL: 'images/image1.jpg',
-      notifier: 'Scarlet',
-    ),
-    Notifications(
-      notificationContent: 'viewed your profile',
-      date: 'May-23-2023',
-      time: '06:23',
-      imageURL: 'images/image1.jpg',
-      notifier: 'Scarlet',
+      imageURL: 'images/boys1.jpeg',
+      notifier: 'Richie Richie',
     ),
     Notifications(
       notificationContent: 'viewed your profile',
@@ -89,50 +70,15 @@ class _NotificationScreenState extends State<NotificationScreen> {
       notificationContent: 'Liked you',
       date: 'May-23-2023',
       time: '06:23',
-      imageURL: 'images/image1.jpg',
-      notifier: 'Scarlet',
+      imageURL: 'images/boys2.jpeg',
+      notifier: 'Victor Don',
     ),
     Notifications(
-      notificationContent: 'viewed your profile',
+      notificationContent: 'Liked you',
       date: 'May-23-2023',
       time: '06:23',
-      imageURL: 'images/image1.jpg',
-      notifier: 'Scarlet',
-    ),
-    Notifications(
-      notificationContent: 'viewed your profile',
-      date: 'May-23-2023',
-      time: '06:23',
-      imageURL: 'images/image1.jpg',
-      notifier: 'Scarlet',
-    ),
-    Notifications(
-      notificationContent: 'viewed your profile',
-      date: 'May-23-2023',
-      time: '06:23',
-      imageURL: 'images/image1.jpg',
-      notifier: 'Scarlet',
-    ),
-    Notifications(
-      notificationContent: 'viewed your profile',
-      date: 'May-23-2023',
-      time: '06:23',
-      imageURL: 'images/image1.jpg',
-      notifier: 'Scarlet',
-    ),
-    Notifications(
-      notificationContent: 'viewed your profile',
-      date: 'May-23-2023',
-      time: '06:23',
-      imageURL: 'images/image1.jpg',
-      notifier: 'Scarlet',
-    ),
-    Notifications(
-      notificationContent: 'viewed your profile',
-      date: 'May-23-2023',
-      time: '06:23',
-      imageURL: 'images/image1.jpg',
-      notifier: 'Scarlet',
+      imageURL: 'images/boys1.jpeg',
+      notifier: 'Richie Richie',
     ),
   ];
   @override
@@ -194,7 +140,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
               itemCount: notifications.length,
               padding: EdgeInsets.only(top: 16),
               itemBuilder: (context, index) {
-                return NotificationsList(
+                return NotificationsListWidget(
                   notificationContent: notifications[index].notificationContent,
                   date: notifications[index].date,
                   time: notifications[index].time,
@@ -204,212 +150,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
               },
             ),
           ),
-          Container(
-            padding: EdgeInsets.only(bottom: 10),
-            child: Column(
-              children: [
-                Divider(
-                  height: 1,
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        currentIndex = 0;
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => BottomNavBarScreens()));
-                      },
-                      child: Column(
-                        children: [
-                          Icon(
-                            Icons.location_on_sharp,
-                            color: Color.fromRGBO(255, 0, 127, 1),
-                          ),
-                          Text(
-                            'Feed',
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.blueGrey,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        currentIndex = 1;
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => BottomNavBarScreens()));
-                      },
-                      child: Column(
-                        children: [
-                          Icon(
-                            Icons.people,
-                            color: Color.fromRGBO(255, 0, 127, 1),
-                          ),
-                          Text(
-                            'Likes',
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.blueGrey,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        currentIndex = 2;
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => BottomNavBarScreens()));
-                      },
-                      child: Column(
-                        children: [
-                          Icon(
-                            FontAwesomeIcons.solidComments,
-                            color: Color.fromRGBO(255, 0, 127, 1),
-                          ),
-                          Text(
-                            'Chats',
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.blueGrey,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        currentIndex = 3;
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => BottomNavBarScreens()));
-                      },
-                      child: Column(
-                        children: [
-                          Icon(
-                            Icons.person,
-                            color: Color.fromRGBO(255, 0, 127, 1),
-                          ),
-                          Text(
-                            'Profile',
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.blueGrey,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
+          BottomNavBar(),
         ],
-      ),
-    );
-  }
-}
-
-class NotificationsList extends StatefulWidget {
-  String notificationContent;
-  String date;
-  String time;
-  String notifier;
-  String imageURL;
-  NotificationsList({
-    required this.notificationContent,
-    required this.date,
-    required this.time,
-    required this.imageURL,
-    required this.notifier,
-  });
-
-  @override
-  State<NotificationsList> createState() => _NotificationsListState();
-}
-
-class _NotificationsListState extends State<NotificationsList> {
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {},
-      child: Container(
-        padding: EdgeInsets.only(left: 16, right: 16, top: 10, bottom: 10),
-        child: Row(
-          children: <Widget>[
-            Expanded(
-              child: Row(
-                children: <Widget>[
-                  CircleAvatar(
-                    backgroundImage: AssetImage(widget.imageURL),
-                    maxRadius: 35,
-                  ),
-                  SizedBox(
-                    width: 16,
-                  ),
-                  Expanded(
-                    child: Container(
-                      color: Colors.transparent,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Row(
-                            children: [
-                              Text(
-                                widget.notifier,
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  color: Color.fromRGBO(255, 0, 127, 1),
-                                ),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Text(
-                                widget.notificationContent,
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
-                                  color: Color.fromRGBO(77, 87, 93, 1),
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 6,
-                          ),
-                          Row(
-                            children: [
-                              Text(
-                                widget.date,
-                                style: TextStyle(
-                                  fontSize: 13,
-                                  color: Colors.grey.shade600,
-                                ),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Text(
-                                widget.time,
-                                style: TextStyle(
-                                  fontSize: 13,
-                                  color: Colors.grey.shade600,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
       ),
     );
   }

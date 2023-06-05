@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kwekwana/screens/payments/payment_successful.dart';
 
 class MtnMobileMoney extends StatefulWidget {
   const MtnMobileMoney({Key? key}) : super(key: key);
@@ -195,7 +196,7 @@ class _MtnMobileMoneyState extends State<MtnMobileMoney> {
                           borderRadius: BorderRadius.circular(50.0),
                           child: MaterialButton(
                             onPressed: () async {
-                              // Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => PaymentSuccessful()));
                             },
                             minWidth: 280,
                             height: 42.0,

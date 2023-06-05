@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:kwekwana/screens/payments/payment_failed.dart';
+import 'package:kwekwana/screens/payments/payment_successful.dart';
 
 class AirtelMobileMoney extends StatefulWidget {
   const AirtelMobileMoney({Key? key}) : super(key: key);
@@ -195,7 +197,7 @@ class _AirtelMobileMoneyState extends State<AirtelMobileMoney> {
                           borderRadius: BorderRadius.circular(50.0),
                           child: MaterialButton(
                             onPressed: () async {
-                              // Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => PaymentFailed()));
                             },
                             minWidth: 280,
                             height: 42.0,

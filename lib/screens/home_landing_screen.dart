@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'airtel_mobile_money.dart';
+import 'payments/paymentMethods/airtel_mobile_money.dart';
 import 'chat_inbox.dart';
 
 class HomeLandingScreen extends StatefulWidget {
@@ -12,11 +12,69 @@ class HomeLandingScreen extends StatefulWidget {
 }
 
 class _HomeLandingScreenState extends State<HomeLandingScreen> {
+  List otherUsers = [
+    {
+      'name': 'Scarlet',
+      'imageUrl': 'images/pic2.jpeg',
+      'age': 26,
+      'job': 'Bussiness woman',
+      'location': 'Ntinda Kampala',
+      'distanceAway': '7',
+    },
+    {
+      'name': 'Pretty Sharuah',
+      'imageUrl': 'images/girls1.jpeg',
+      'age': 18,
+      'job': 'Bussiness woman',
+      'location': 'Ntinda Kampala',
+      'distanceAway': '7',
+    },
+    {
+      'name': 'Jojo Queen',
+      'imageUrl': 'images/person_pic.jpeg',
+      'age': 27,
+      'job': 'Bussiness woman',
+      'location': 'Ntinda Kampala',
+      'distanceAway': '7',
+    },
+    {
+      'name': 'Raymond V',
+      'imageUrl': 'images/boys1.jpeg',
+      'age': 24,
+      'job': 'Bussiness man',
+      'location': 'Ntinda Kampala',
+      'distanceAway': '7',
+    },
+    {
+      'name': 'Rasta Cleeve',
+      'imageUrl': 'images/boys2.jpeg',
+      'age': 22,
+      'job': 'Fisher man',
+      'location': 'Ntinda Kampala',
+      'distanceAway': '7',
+    },
+    {
+      'name': 'Cool Bae',
+      'imageUrl': 'images/girls2.png',
+      'age': 26,
+      'job': 'Bussiness woman',
+      'location': 'Ntinda Kampala',
+      'distanceAway': '7',
+    },
+    {
+      'name': 'Princess Ray',
+      'imageUrl': 'images/girls3.jpeg',
+      'age': 26,
+      'job': 'Bussiness woman',
+      'location': 'Ntinda Kampala',
+      'distanceAway': '7',
+    }
+  ];
   @override
   Widget build(BuildContext context) {
     return Container(
       child: ListView.builder(
-        itemCount: 5,
+        itemCount: otherUsers.length,
         padding: EdgeInsets.all(0),
         itemBuilder: (context, index) => Container(
           child: Padding(
@@ -41,7 +99,7 @@ class _HomeLandingScreenState extends State<HomeLandingScreen> {
                           borderRadius: BorderRadius.circular(20),
                           color: Colors.blue,
                           image: DecorationImage(
-                            image: AssetImage('images/pic2.jpeg'),
+                            image: AssetImage(otherUsers[index]['imageUrl']),
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -51,22 +109,29 @@ class _HomeLandingScreenState extends State<HomeLandingScreen> {
                         right: 30,
                         child: Row(
                           children: [
-                            Container(
-                              margin: EdgeInsets.only(right: 10),
-                              width: 50,
-                              height: 50,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(50),
-                                border: Border.all(
-                                  color: Color.fromRGBO(255, 229, 242, 1),
+                            GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  otherUsers.removeAt(index);
+                                });
+                              },
+                              child: Container(
+                                margin: EdgeInsets.only(right: 10),
+                                width: 50,
+                                height: 50,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(50),
+                                  border: Border.all(
+                                    color: Color.fromRGBO(255, 229, 242, 1),
+                                  ),
                                 ),
-                              ),
-                              child: CircleAvatar(
-                                backgroundColor: Color.fromRGBO(222, 0, 111, 1),
-                                child: Icon(
-                                  Icons.close,
-                                  size: 35,
-                                  color: Colors.white,
+                                child: CircleAvatar(
+                                  backgroundColor: Color.fromRGBO(222, 0, 111, 1),
+                                  child: Icon(
+                                    Icons.close,
+                                    size: 35,
+                                    color: Colors.white,
+                                  ),
                                 ),
                               ),
                             ),
@@ -130,14 +195,14 @@ class _HomeLandingScreenState extends State<HomeLandingScreen> {
                               Row(
                                 children: [
                                   Text(
-                                    'Scarlet,',
+                                    '${otherUsers[index]['name']},',
                                     style: TextStyle(
                                         color: Color.fromRGBO(99, 107, 113, 1),
                                         fontSize: 18,
                                         fontWeight: FontWeight.bold),
                                   ),
                                   Text(
-                                    ' 26',
+                                    ' ${otherUsers[index]['age']}',
                                     style: TextStyle(
                                       color: Color.fromRGBO(99, 107, 113, 1),
                                       fontSize: 18,
@@ -160,7 +225,7 @@ class _HomeLandingScreenState extends State<HomeLandingScreen> {
                                     width: 10,
                                   ),
                                   Text(
-                                    'Business woman',
+                                    '${otherUsers[index]['job']}',
                                     style: TextStyle(
                                       color: Color.fromRGBO(99, 107, 113, 1),
                                       fontSize: 14,
@@ -180,7 +245,7 @@ class _HomeLandingScreenState extends State<HomeLandingScreen> {
                                     width: 10,
                                   ),
                                   Text(
-                                    'Lives in Ntinda Kampala',
+                                    'Lives in ${otherUsers[index]['location']}',
                                     style: TextStyle(
                                       color: Color.fromRGBO(99, 107, 113, 1),
                                       fontSize: 14,
@@ -200,7 +265,7 @@ class _HomeLandingScreenState extends State<HomeLandingScreen> {
                                     width: 10,
                                   ),
                                   Text(
-                                    'Less than 7 miles away',
+                                    'Less than ${otherUsers[index]['distanceAway']} miles away',
                                     style: TextStyle(
                                       color: Color.fromRGBO(99, 107, 113, 1),
                                       fontSize: 14,

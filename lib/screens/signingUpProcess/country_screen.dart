@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../widgets/confirmation_button.dart';
 
 class CountryScreen extends StatefulWidget {
   const CountryScreen({Key? key}) : super(key: key);
@@ -113,24 +116,18 @@ class _CountryScreenState extends State<CountryScreen> {
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 18.0, top: 15),
-                child: Material(
-                  elevation: 1.0,
+                child: ConfirmationButton(
+                  text: 'Confirm',
+                  textColor: Colors.white,
                   color: Color.fromRGBO(255, 83, 169, 1),
-                  borderRadius: BorderRadius.circular(50.0),
-                  child: MaterialButton(
-                    onPressed: () async {
-                      // Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
-                    },
-                    minWidth: 350,
-                    height: 42.0,
-                    child: const Text(
-                      'Confirm',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ),
+                  onPressed: () async {
+                    if ((selectedCountry == '')) {
+                      ScaffoldMessenger.of(context)
+                          .showSnackBar(SnackBar(content: Text('Ensure to select one country above')));
+                    } else {
+                      context.push('/genderSelection');
+                    }
+                  },
                 ),
               ),
             ],

@@ -1,11 +1,11 @@
 import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
-import '../screens/enable_location.dart';
-import '../screens/gender_selection.dart';
 import '../screens/home.dart';
-import '../screens/login.dart';
-import '../screens/signup.dart';
-import '../screens/verification_code.dart';
+import '../screens/auth/login.dart';
+import '../screens/signingUpProcess/enable_location.dart';
+import '../screens/signingUpProcess/gender_selection.dart';
+import '../screens/auth/signup.dart';
+import '../screens/signingUpProcess/verification_code.dart';
 import '../screens/welcome.dart';
 
 class AppRoutes {

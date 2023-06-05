@@ -1,19 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:kwekwana/screens/verification_code.dart';
 import '../globals/global_vars.dart';
-import 'airtel_mobile_money.dart';
-import 'country_screen.dart';
 import 'filter.dart';
 import 'home_landing_screen.dart';
-import 'likes.dart';
-import 'mtn_mobile_money.dart';
 import 'package:kwekwana/screens/chat_screen.dart';
 import 'package:kwekwana/screens/people_matches.dart';
 import 'package:kwekwana/screens/profile.dart';
-import 'package:kwekwana/screens/settings_screen.dart';
-
-import 'notification_screen.dart';
 
 class BottomNavBarScreens extends StatefulWidget {
   const BottomNavBarScreens({Key? key}) : super(key: key);
@@ -23,12 +15,37 @@ class BottomNavBarScreens extends StatefulWidget {
 }
 
 class _BottomNavBarScreensState extends State<BottomNavBarScreens> {
-  final List<Widget> _children = [
-    HomeLandingScreen(),
-    Likes(),
-    ChatScreen(),
-    Profile(),
+  List spotLightPeople = [
+    {
+      'name': 'Raymond V',
+      'imageUrl': 'images/boys1.jpeg',
+    },
+    {
+      'name': 'Rasta Cleeve',
+      'imageUrl': 'images/boys2.jpeg',
+    },
+    {
+      'name': 'Cool Bae',
+      'imageUrl': 'images/girls2.png',
+    },
+    {
+      'name': 'Princess Ray',
+      'imageUrl': 'images/girls3.jpeg',
+    },
+    {
+      'name': 'Scarlet',
+      'imageUrl': 'images/pic2.jpeg',
+    },
+    {
+      'name': 'Pretty Sharuah',
+      'imageUrl': 'images/girls1.jpeg',
+    },
+    {
+      'name': 'Jojo Queen',
+      'imageUrl': 'images/person_pic.jpeg',
+    },
   ];
+  final List<Widget> _children = [HomeLandingScreen(), ChatScreen(), Profile()];
 
   void onTabTapped(int index) {
     setState(() {
@@ -49,56 +66,23 @@ class _BottomNavBarScreensState extends State<BottomNavBarScreens> {
         selectedItemColor: Color.fromRGBO(255, 0, 127, 1),
         items: [
           BottomNavigationBarItem(
-            icon: GestureDetector(
-              child: Icon(
-                Icons.location_on_sharp,
-                color: Color.fromRGBO(255, 0, 127, 1),
-              ),
+            icon: Icon(
+              Icons.location_on_sharp,
+              color: Color.fromRGBO(255, 0, 127, 1),
             ),
             label: "Feed",
           ),
           BottomNavigationBarItem(
-            icon: GestureDetector(
-              onTap: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => MyAccount()),
-                // );
-              },
-              child: Icon(
-                Icons.people,
-                color: Color.fromRGBO(255, 0, 127, 1),
-              ),
-            ),
-            label: "Likes",
-          ),
-          BottomNavigationBarItem(
-            icon: GestureDetector(
-              onTap: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => MyAccount()),
-                // );
-              },
-              child: Icon(
-                FontAwesomeIcons.solidComments,
-                color: Color.fromRGBO(255, 0, 127, 1),
-              ),
+            icon: Icon(
+              FontAwesomeIcons.solidComments,
+              color: Color.fromRGBO(255, 0, 127, 1),
             ),
             label: "Chats",
           ),
           BottomNavigationBarItem(
-            icon: GestureDetector(
-              onTap: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => MyAccount()),
-                // );
-              },
-              child: Icon(
-                Icons.person,
-                color: Color.fromRGBO(255, 0, 127, 1),
-              ),
+            icon: Icon(
+              Icons.person,
+              color: Color.fromRGBO(255, 0, 127, 1),
             ),
             label: "Profile",
           ),
@@ -107,7 +91,7 @@ class _BottomNavBarScreensState extends State<BottomNavBarScreens> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          currentIndex != 2 && currentIndex != 3
+          currentIndex != 1 && currentIndex != 2
               ? Padding(
                   padding: const EdgeInsets.only(top: 28.0, left: 20, right: 20, bottom: 10),
                   child: Row(
@@ -172,7 +156,7 @@ class _BottomNavBarScreensState extends State<BottomNavBarScreens> {
                   ),
                 )
               : SizedBox.shrink(),
-          currentIndex != 2 && currentIndex != 3
+          currentIndex != 1 && currentIndex != 2
               ? const Padding(
                   padding: EdgeInsets.only(left: 10.0, bottom: 10),
                   child: Text(
@@ -185,7 +169,7 @@ class _BottomNavBarScreensState extends State<BottomNavBarScreens> {
                   ),
                 )
               : SizedBox.shrink(),
-          currentIndex != 2 && currentIndex != 3
+          currentIndex != 1 && currentIndex != 2
               ? Container(
                   height: 67,
                   // color: Colors.red,
@@ -233,9 +217,9 @@ class _BottomNavBarScreensState extends State<BottomNavBarScreens> {
                       Expanded(
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
-                          itemCount: 8,
+                          itemCount: spotLightPeople.length,
                           itemBuilder: (context, index) => Padding(
-                            padding: const EdgeInsets.only(right: 10.0),
+                            padding: EdgeInsets.only(right: 10.0),
                             child: Container(
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -249,12 +233,12 @@ class _BottomNavBarScreensState extends State<BottomNavBarScreens> {
                                       ),
                                       borderRadius: BorderRadius.circular(50),
                                     ),
-                                    child: const CircleAvatar(
-                                      backgroundImage: AssetImage('images/image1.jpg'),
+                                    child: CircleAvatar(
+                                      backgroundImage: AssetImage(spotLightPeople[index]['imageUrl']),
                                     ),
                                   ),
-                                  const Text(
-                                    'Scarlet',
+                                  Text(
+                                    spotLightPeople[index]['name'],
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                       color: Color.fromRGBO(99, 107, 113, 1),

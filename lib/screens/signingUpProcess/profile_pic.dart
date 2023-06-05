@@ -5,7 +5,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:kwekwana/screens/home_landing_screen.dart';
 
-import 'bottom_nav_bar_screens.dart';
+import '../../widgets/backbutton.dart';
+import '../bottom_nav_bar_screens.dart';
 
 class ProfilePic extends StatefulWidget {
   const ProfilePic({Key? key}) : super(key: key);
@@ -33,43 +34,34 @@ class _ProfilePicState extends State<ProfilePic> {
 
   @override
   Widget build(BuildContext context) {
+    List<void Function()?> smallImageFunctions = [
+      () async {
+        _image1 = await getImage();
+        setState(() {});
+      },
+      () async {
+        _image2 = await getImage();
+        setState(() {});
+      },
+      () async {
+        _image3 = await getImage();
+        setState(() {});
+      },
+    ];
     return Scaffold(
       body: Container(
         color: Color.fromRGBO(235, 235, 235, 1),
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 35.0),
+              padding: const EdgeInsets.only(top: 35.0, left: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  GestureDetector(
+                  MyBackButton(
                     onTap: () {
                       Navigator.pop(context);
                     },
-                    child: Container(
-                      margin: EdgeInsets.fromLTRB(10, 0, 0, 10),
-                      padding: EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          width: 2,
-                          color: Colors.white,
-                        ),
-                        borderRadius: BorderRadius.circular(50),
-                      ),
-                      child: Container(
-                        padding: EdgeInsets.all(15),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                        child: Icon(
-                          Icons.arrow_back,
-                          color: Color.fromRGBO(255, 0, 127, 1),
-                          size: 25,
-                        ),
-                      ),
-                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 40.0),
@@ -138,74 +130,38 @@ class _ProfilePicState extends State<ProfilePic> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    GestureDetector(
-                      onTap: () async {
-                        _image1 = await getImage();
-                        setState(() {});
+                    ...List.generate(
+                      smallImageFunctions.length,
+                      (index) {
+                        var image;
+                        if (index + 1 == 1) {
+                          image = _image1;
+                        } else if (index + 1 == 2) {
+                          image = _image2;
+                        } else if (index + 1 == 3) {
+                          image = _image3;
+                        }
+                        return GestureDetector(
+                          onTap: smallImageFunctions[index],
+                          child: Container(
+                            width: 100,
+                            height: 100,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              color: Colors.white,
+                              image:
+                                  image != null ? DecorationImage(image: FileImage(image!), fit: BoxFit.cover) : null,
+                            ),
+                            child: image == null
+                                ? Icon(
+                                    Icons.add,
+                                    color: Color.fromRGBO(255, 0, 127, 1),
+                                    size: 50,
+                                  )
+                                : SizedBox.shrink(),
+                          ),
+                        );
                       },
-                      child: Container(
-                        width: 100,
-                        height: 100,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          color: Colors.white,
-                          image:
-                              _image1 != null ? DecorationImage(image: FileImage(_image1!), fit: BoxFit.cover) : null,
-                        ),
-                        child: _image1 == null
-                            ? Icon(
-                                Icons.add,
-                                color: Color.fromRGBO(255, 0, 127, 1),
-                                size: 50,
-                              )
-                            : SizedBox.shrink(),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () async {
-                        _image2 = await getImage();
-                        setState(() {});
-                      },
-                      child: Container(
-                        width: 100,
-                        height: 100,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          color: Colors.white,
-                          image:
-                              _image2 != null ? DecorationImage(image: FileImage(_image2!), fit: BoxFit.cover) : null,
-                        ),
-                        child: _image2 == null
-                            ? Icon(
-                                Icons.add,
-                                color: Color.fromRGBO(255, 0, 127, 1),
-                                size: 50,
-                              )
-                            : SizedBox.shrink(),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () async {
-                        _image3 = await getImage();
-                        setState(() {});
-                      },
-                      child: Container(
-                        width: 100,
-                        height: 100,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          color: Colors.white,
-                          image:
-                              _image3 != null ? DecorationImage(image: FileImage(_image3!), fit: BoxFit.cover) : null,
-                        ),
-                        child: _image3 == null
-                            ? Icon(
-                                Icons.add,
-                                color: Color.fromRGBO(255, 0, 127, 1),
-                                size: 50,
-                              )
-                            : SizedBox.shrink(),
-                      ),
                     ),
                   ],
                 ),

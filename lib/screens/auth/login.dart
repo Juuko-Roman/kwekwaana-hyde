@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:go_router/go_router.dart';
-import 'package:kwekwana/screens/signup.dart';
-import 'package:kwekwana/screens/verification_code.dart';
+import 'package:kwekwana/screens/auth/signup.dart';
+import 'package:kwekwana/screens/signingUpProcess/verification_code.dart';
 
-import '../services/firebase_auth.dart';
-import '../services/routes.dart';
-import '../widgets/formfield.dart';
+import '../../services/firebase_auth.dart';
+import '../../services/routes.dart';
+import '../../widgets/backbutton.dart';
+import '../../widgets/confirmation_button.dart';
+import '../../widgets/formfield.dart';
+import '../bottom_nav_bar_screens.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -47,7 +50,7 @@ class _LoginPageState extends State<LoginPage> {
       final result = await _authService.signInWithEmailAndPassword(email, password);
       Navigator.pop(context);
       if (result != null) {
-        context.push('/enableLocation');
+        Navigator.push(context, MaterialPageRoute(builder: (context) => BottomNavBarScreens()));
       } else {
         // login failed, show error message
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Invalid email or password')));
@@ -81,33 +84,10 @@ class _LoginPageState extends State<LoginPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            GestureDetector(
+            MyBackButton(
               onTap: () {
-                context.pop();
+                Navigator.pop(context);
               },
-              child: Container(
-                margin: EdgeInsets.fromLTRB(10, 0, 0, 40),
-                padding: EdgeInsets.all(5),
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    width: 2,
-                    color: Colors.white,
-                  ),
-                  borderRadius: BorderRadius.circular(50),
-                ),
-                child: Container(
-                  padding: EdgeInsets.all(15),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(50),
-                  ),
-                  child: Icon(
-                    Icons.arrow_back,
-                    color: Color.fromRGBO(255, 0, 127, 1),
-                    size: 25,
-                  ),
-                ),
-              ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -169,22 +149,11 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                      child: Material(
-                        elevation: 1.5,
-                        borderRadius: BorderRadius.circular(50.0),
-                        child: MaterialButton(
-                          onPressed: _handleLogin,
-                          height: 42.0,
-                          minWidth: 400,
-                          child: const Text(
-                            'Log in',
-                            style: TextStyle(
-                              color: Color.fromRGBO(255, 83, 169, 1),
-                              fontSize: 16,
-                            ),
-                          ),
-                        ),
-                      ),
+                      child: ConfirmationButton(
+                          text: 'Log In',
+                          textColor: Color.fromRGBO(255, 83, 169, 1),
+                          color: Colors.white,
+                          onPressed: _handleLogin),
                     ),
                     Container(
                       margin: EdgeInsets.only(left: 15, top: 40),

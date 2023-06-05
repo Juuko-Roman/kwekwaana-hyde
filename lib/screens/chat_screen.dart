@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:kwekwana/models/chat_message.dart';
+import 'package:kwekwana/screens/chat_inbox.dart';
 
 import '../models/notifications_model.dart';
 import 'notification_screen.dart';
@@ -13,52 +14,61 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
+  List<String> newConns = [
+    'images/boys1.jpeg',
+    'images/boys2.jpeg',
+    'images/girls2.png',
+    'images/girls3.jpeg',
+    'images/pic2.jpeg',
+    'images/girls1.jpeg',
+    'images/person_pic.jpeg',
+  ];
   List<ChatMessage> chatMessages = [
     ChatMessage(
       messageContent: 'I love music ',
-      senderName: 'Juliana',
-      senderImageURL: 'images/image1.jpg',
+      senderName: 'Juliana Veilo',
+      senderImageURL: 'images/girls1.jpeg',
       time: '06:23',
     ),
     ChatMessage(
       messageContent:
           'I love music and I love music and I love music andI love music and I love music and I love music and',
-      senderName: 'Jex',
-      senderImageURL: 'images/pic2.jpeg',
+      senderName: 'Jex Da Coolest',
+      senderImageURL: 'images/boys2.jpeg',
       time: '06:23',
     ),
     ChatMessage(
       messageContent:
           'I love music and I love music and I love music andI love music and I love music and I love music and',
-      senderName: 'Trinity',
+      senderName: 'Trinity Queen',
       senderImageURL: 'images/person_pic.jpeg',
       time: '06:23',
     ),
     ChatMessage(
       messageContent:
           'I love music and I love music and I love music andI love music and I love music and I love music and',
-      senderName: 'Kenzo',
-      senderImageURL: 'images/image1.jpg',
+      senderName: 'Kenzo LoFi',
+      senderImageURL: 'images/boys1.jpeg',
       time: '06:23',
     ),
     ChatMessage(
       messageContent:
           'I love music and I love music and I love music andI love music and I love music and I love music and',
-      senderName: 'Juliana',
-      senderImageURL: 'images/image1.jpg',
+      senderName: 'Ammy Bae',
+      senderImageURL: 'images/girls2.png',
       time: '06:23',
     ),
     ChatMessage(
       messageContent:
           'I love music and I love music and I love music andI love music and I love music and I love music and',
-      senderName: 'Juliana',
-      senderImageURL: 'images/image1.jpg',
+      senderName: 'Cleofus',
+      senderImageURL: 'images/girls3.jpeg',
       time: '06:23',
     ),
     ChatMessage(
       messageContent:
           'I love music and I love music and I love music andI love music and I love music and I love music and',
-      senderName: 'Juliana',
+      senderName: 'Loy Irene',
       senderImageURL: 'images/image1.jpg',
       time: '06:23',
     ),
@@ -133,7 +143,7 @@ class _ChatScreenState extends State<ChatScreen> {
             margin: EdgeInsets.only(left: 10),
             child: ListView.builder(
               padding: EdgeInsets.all(0),
-              itemCount: 5,
+              itemCount: newConns.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
                 return Container(
@@ -143,7 +153,7 @@ class _ChatScreenState extends State<ChatScreen> {
                       // color: Colors.red,
                       borderRadius: BorderRadius.circular(5),
                       image: DecorationImage(
-                        image: AssetImage('images/image1.jpg'),
+                        image: AssetImage(newConns[index]),
                         fit: BoxFit.cover,
                       )),
                 );
@@ -202,7 +212,9 @@ class _NotificationsListState extends State<NotificationsList> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(builder: (context) => ChatInBox()));
+      },
       child: Container(
         padding: EdgeInsets.only(left: 16, right: 16, top: 10, bottom: 10),
         child: Row(

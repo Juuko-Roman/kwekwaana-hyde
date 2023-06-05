@@ -2,10 +2,12 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
-import 'package:kwekwana/screens/verification_code.dart';
+import 'package:kwekwana/screens/signingUpProcess/verification_code.dart';
 
-import '../services/firebase_auth.dart';
-import '../widgets/formfield.dart';
+import '../../services/firebase_auth.dart';
+import '../../widgets/backbutton.dart';
+import '../../widgets/confirmation_button.dart';
+import '../../widgets/formfield.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -66,33 +68,10 @@ class _SignUpState extends State<SignUp> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            GestureDetector(
+            MyBackButton(
               onTap: () {
                 Navigator.pop(context);
               },
-              child: Container(
-                margin: EdgeInsets.fromLTRB(10, 0, 0, 10),
-                padding: EdgeInsets.all(5),
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    width: 2,
-                    color: Colors.white,
-                  ),
-                  borderRadius: BorderRadius.circular(50),
-                ),
-                child: Container(
-                  padding: EdgeInsets.all(15),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(50),
-                  ),
-                  child: Icon(
-                    Icons.arrow_back,
-                    color: Color.fromRGBO(255, 0, 127, 1),
-                    size: 25,
-                  ),
-                ),
-              ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -183,14 +162,14 @@ class _SignUpState extends State<SignUp> {
                     Container(
                       margin: EdgeInsets.symmetric(horizontal: 20),
                       child: Row(
-                        children: [
+                        children: const [
                           Expanded(
                             child: Divider(
                               color: Color.fromRGBO(178, 178, 178, 1),
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(left: 15, right: 15, top: 20, bottom: 20),
+                            padding: EdgeInsets.only(left: 15, right: 15, top: 20, bottom: 20),
                             child: Text(
                               "or sign up with",
                             ),
@@ -301,27 +280,17 @@ class _SignUpState extends State<SignUp> {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 15.0, right: 15, top: 15),
-                      child: Material(
-                        elevation: 1.5,
-                        borderRadius: BorderRadius.circular(50.0),
-                        child: MaterialButton(
-                          onPressed: _handleSignup,
-                          height: 42.0,
-                          minWidth: 400,
-                          child: const Text(
-                            'Sign Up',
-                            style: TextStyle(
-                              color: Color.fromRGBO(255, 83, 169, 1),
-                              fontSize: 16,
-                            ),
-                          ),
-                        ),
+                      child: ConfirmationButton(
+                        text: 'Sign Up',
+                        textColor: Color.fromRGBO(255, 83, 169, 1),
+                        color: Colors.white,
+                        onPressed: _handleSignup,
                       ),
                     ),
                     Container(
                       margin: EdgeInsets.symmetric(vertical: 15),
                       child: RichText(
-                        text: TextSpan(
+                        text: const TextSpan(
                           text: 'By continuing, u agree to our ',
                           children: <TextSpan>[
                             TextSpan(

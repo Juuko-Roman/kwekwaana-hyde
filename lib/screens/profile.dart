@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:kwekwana/screens/country_screen.dart';
+import 'package:kwekwana/screens/edit_profile.dart';
 import 'package:kwekwana/screens/settings_screen.dart';
+
+import 'images_in_profile_preview.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -143,7 +145,7 @@ class _ProfileState extends State<Profile> {
                 ),
                 Container(
                   width: 280,
-                  margin: EdgeInsets.only(top: 15, bottom: 25),
+                  margin: EdgeInsets.only(top: 15, bottom: 15),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
@@ -165,9 +167,11 @@ class _ProfileState extends State<Profile> {
                 ),
                 Container(
                   width: 250,
+                  // color: Colors.red,
+                  padding: EdgeInsets.only(right: 25),
                   margin: EdgeInsets.only(top: 0, bottom: 25),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Icon(
                         Icons.location_on_sharp,
@@ -187,7 +191,7 @@ class _ProfileState extends State<Profile> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => CountryScreen()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => EditProfile()));
                   },
                   child: Container(
                     width: 200,
@@ -321,15 +325,27 @@ class _ProfileState extends State<Profile> {
                 width: 5,
               ),
               Expanded(
-                child: Container(
-                  height: 250,
-                  // width: 150,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('images/image1.jpg'),
-                      fit: BoxFit.cover,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ImagesPreview(
+                          imageIindex: 0,
+                        ),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    height: 250,
+                    // width: 150,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('images/pic2.jpeg'),
+                        fit: BoxFit.cover,
+                      ),
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                    borderRadius: BorderRadius.circular(10),
                   ),
                 ),
               ),
@@ -337,15 +353,27 @@ class _ProfileState extends State<Profile> {
                 width: 10,
               ),
               Expanded(
-                child: Container(
-                  height: 250,
-                  // width: 150,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('images/image1.jpg'),
-                      fit: BoxFit.cover,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ImagesPreview(
+                          imageIindex: 1,
+                        ),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    height: 250,
+                    // width: 150,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('images/image1.jpg'),
+                        fit: BoxFit.cover,
+                      ),
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                    borderRadius: BorderRadius.circular(10),
                   ),
                 ),
               ),
@@ -363,15 +391,27 @@ class _ProfileState extends State<Profile> {
                 width: 5,
               ),
               Expanded(
-                child: Container(
-                  height: 180,
-                  // width: 150,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('images/image1.jpg'),
-                      fit: BoxFit.cover,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ImagesPreview(
+                          imageIindex: 2,
+                        ),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    height: 180,
+                    // width: 150,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('images/person_pic.jpeg'),
+                        fit: BoxFit.cover,
+                      ),
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                    borderRadius: BorderRadius.circular(10),
                   ),
                 ),
               ),
@@ -379,15 +419,27 @@ class _ProfileState extends State<Profile> {
                 width: 10,
               ),
               Expanded(
-                child: Container(
-                  height: 180,
-                  // width: 150,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('images/image1.jpg'),
-                      fit: BoxFit.cover,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ImagesPreview(
+                          imageIindex: 1,
+                        ),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    height: 180,
+                    // width: 150,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('images/image1.jpg'),
+                        fit: BoxFit.cover,
+                      ),
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                    borderRadius: BorderRadius.circular(10),
                   ),
                 ),
               ),
@@ -395,15 +447,27 @@ class _ProfileState extends State<Profile> {
                 width: 10,
               ),
               Expanded(
-                child: Container(
-                  height: 180,
-                  // width: 150,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('images/image1.jpg'),
-                      fit: BoxFit.cover,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ImagesPreview(
+                          imageIindex: 0,
+                        ),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    height: 180,
+                    // width: 150,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('images/pic2.jpeg'),
+                        fit: BoxFit.cover,
+                      ),
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                    borderRadius: BorderRadius.circular(10),
                   ),
                 ),
               ),

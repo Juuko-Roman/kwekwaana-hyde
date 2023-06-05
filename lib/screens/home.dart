@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:kwekwana/screens/signup.dart';
+import 'package:kwekwana/screens/auth/signup.dart';
 
-import 'login.dart';
+import '../widgets/confirmation_button.dart';
+import 'auth/login.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -63,45 +64,24 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                Material(
-                  elevation: 1.0,
+                ConfirmationButton(
+                  text: 'Log in',
+                  textColor: Colors.white,
                   color: Color.fromRGBO(255, 83, 169, 1),
-                  borderRadius: BorderRadius.circular(50.0),
-                  child: MaterialButton(
-                    onPressed: () async {
-                      context.push('/login');
-                    },
-                    minWidth: 350,
-                    height: 42.0,
-                    child: const Text(
-                      'Log in',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ),
+                  onPressed: () {
+                    context.push('/login');
+                  },
                 ),
                 SizedBox(
                   height: 20,
                 ),
-                Material(
-                  elevation: 1.0,
-                  borderRadius: BorderRadius.circular(50.0),
-                  child: MaterialButton(
-                    onPressed: () async {
-                      GoRouter.of(context).push('/signup');
-                    },
-                    height: 42.0,
-                    minWidth: 350,
-                    child: const Text(
-                      'Sign Up',
-                      style: TextStyle(
-                        color: Color.fromRGBO(255, 83, 169, 1),
-                        fontSize: 16,
-                      ),
-                    ),
-                  ),
+                ConfirmationButton(
+                  text: 'Sign Up',
+                  textColor: Color.fromRGBO(255, 83, 169, 1),
+                  color: Colors.white,
+                  onPressed: () {
+                    context.push('/signup');
+                  },
                 ),
               ],
             ),

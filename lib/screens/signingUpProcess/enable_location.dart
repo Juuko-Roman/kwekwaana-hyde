@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-
-import '../services/location_settings.dart';
-import 'gender_selection.dart';
+import '../../services/location_settings.dart';
+import '../../widgets/confirmation_button.dart';
+import 'country_screen.dart';
 
 class EnableLocation extends StatefulWidget {
   const EnableLocation({Key? key}) : super(key: key);
@@ -180,30 +179,20 @@ class _EnableLocationState extends State<EnableLocation> {
                     ),
                   )
                 : SizedBox.shrink(),
-            Material(
-              elevation: 0,
-              borderRadius: BorderRadius.circular(50.0),
-              child: MaterialButton(
-                onPressed: () async {
-                  MyLocation.getActualLocation(context).then((value) {
-                    print('vaue is $value');
-                    if (value != "not allowed" && value != 'not allowed for good') {
-                      context.push('/genderSelection');
-                    } else {
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Location not enabled')));
-                    }
-                  });
-                },
-                height: 42.0,
-                minWidth: 350,
-                child: const Text(
-                  'Enable Location',
-                  style: TextStyle(
-                    color: Color.fromRGBO(130, 136, 149, 1),
-                    fontSize: 16,
-                  ),
-                ),
-              ),
+            ConfirmationButton(
+              text: 'Enable Location',
+              textColor: Color.fromRGBO(130, 136, 149, 1),
+              color: Colors.white,
+              onPressed: () async {
+                MyLocation.getActualLocation(context).then((value) {
+                  print('vaue is $value');
+                  if (value != "not allowed" && value != 'not allowed for good') {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => CountryScreen()));
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Location not enabled')));
+                  }
+                });
+              },
             ),
           ],
         ),
