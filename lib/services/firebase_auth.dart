@@ -1,7 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:kwekwana/screens/signingUpProcess/verification_code.dart';
+
+import '../screens/bottom_nav_bar_screens.dart';
 
 class FirebaseAuthService {
   FirebaseAuth _auth = FirebaseAuth.instance;
+
+  static String verification_id = '';
 
   // Sign in with email and password
   Future<UserCredential?> signInWithEmailAndPassword(String email, String password) async {
@@ -11,6 +17,30 @@ class FirebaseAuthService {
     } catch (e) {
       print('Error logging in with email and password: $e');
       return null;
+    }
+  }
+
+  // Sign in with email and password
+  Future<bool> signInWithPhone(String phone, BuildContext context) async {
+    try {
+      await _auth.verifyPhoneNumber(
+        phoneNumber: phone,
+        verificationCompleted: (PhoneAuthCredential credential) {
+          print('PhoneAuthCredential is $PhoneAuthCredential');
+        },
+        verificationFailed: (FirebaseAuthException e) {
+          print('verificationFailed is $e');
+        },
+        codeSent: (String verificationid, int? resendToken) {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => VerificationCode()));
+          verification_id = verificationid;
+        },
+        codeAutoRetrievalTimeout: (String verificationId) {},
+      );
+      return true;
+    } catch (e) {
+      print('Error logging in with email and password: $e');
+      return false;
     }
   }
 
@@ -42,5 +72,21 @@ class FirebaseAuthService {
   // Get the current user
   User? getCurrentUser() {
     return _auth.currentUser;
+  }
+
+  Future<bool> verifyCode(String code) async {
+    try {
+      PhoneAuthCredential credential = PhoneAuthProvider.credential(
+        verificationId: verification_id,
+        smsCode: code,
+      );
+      await _auth.signInWithCredential(credential);
+      return true;
+      // Verification successful, proceed with your logic
+    } catch (e) {
+      // Verification failed, handle the error
+      print('Verification failed: $e');
+      return false;
+    }
   }
 }

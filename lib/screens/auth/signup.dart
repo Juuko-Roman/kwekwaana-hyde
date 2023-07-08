@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kwekwana/screens/signingUpProcess/verification_code.dart';
 
+import '../../globals/global_vars.dart';
 import '../../services/firebase_auth.dart';
 import '../../widgets/backbutton.dart';
 import '../../widgets/confirmation_button.dart';
@@ -24,6 +25,7 @@ class _SignUpState extends State<SignUp> {
   final _cpasswordController = TextEditingController();
   final _numberController = TextEditingController();
   void _handleSignup() async {
+    goToHome = false;
     if (_rformKey.currentState!.validate()) {
       final email = _emailController.text.trim();
       final password = _passwordController.text.trim();

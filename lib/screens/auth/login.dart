@@ -24,38 +24,52 @@ class _LoginPageState extends State<LoginPage> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _numberController = TextEditingController();
+  bool selectLogin = false;
 
-  void _handleLogin() async {
-    if (_formKey.currentState!.validate()) {
-      showDialog(
-        context: context,
-        builder: (ctxt) => WillPopScope(
-          onWillPop: () async => false,
-          child: Center(
-            child: SpinKitFadingCircle(
-              itemBuilder: (BuildContext ctxt, int index) {
-                return DecoratedBox(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(70),
-                    color: Colors.white,
-                  ),
-                );
-              },
+  void Function()? _handleLogin(context) {
+    return () async {
+      if (_formKey.currentState!.validate()) {
+        showDialog(
+          context: context,
+          builder: (ctxt) => WillPopScope(
+            onWillPop: () async => false,
+            child: Center(
+              child: SpinKitFadingCircle(
+                itemBuilder: (BuildContext ctxt, int index) {
+                  return DecoratedBox(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(70),
+                      color: Colors.white,
+                    ),
+                  );
+                },
+              ),
             ),
           ),
-        ),
-      );
-      final email = _emailController.text.trim();
-      final password = _passwordController.text.trim();
-      final result = await _authService.signInWithEmailAndPassword(email, password);
-      Navigator.pop(context);
-      if (result != null) {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => BottomNavBarScreens()));
-      } else {
-        // login failed, show error message
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Invalid email or password')));
+        );
+        final email = _emailController.text.trim();
+        final password = _passwordController.text.trim();
+        final numb = _numberController.text.trim();
+        if (numb.length == 13) {
+          final result = await _authService.signInWithPhone(numb, context);
+          Navigator.pop(context);
+        } else {
+          final result2 = await _authService.signInWithEmailAndPassword(email, password);
+          Navigator.pop(context);
+          if (result2 != null) {
+            print('object bbbbb');
+
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => BottomNavBarScreens()),
+            );
+          } else {
+            // signup failed, show error message
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Invalid email or password')));
+          }
+        }
       }
-    }
+    };
   }
 
   @override
@@ -104,11 +118,18 @@ class _LoginPageState extends State<LoginPage> {
                 child: ListView(
                   children: [
                     MyFormField(
+                        ontap: () => setState(() {
+                              selectLogin = !selectLogin;
+                              _emailController.clear();
+                              _passwordController.clear();
+                            }),
+                        enable: !selectLogin,
                         icon: Icons.phone_enabled,
                         controller: _numberController,
+                        keyboard: TextInputType.phone,
                         obscureText: false,
                         errorMsg: "Please enter your number",
-                        hinttext: 'Enter number'),
+                        hinttext: 'Enter number (+2567....)'),
                     Container(
                       margin: EdgeInsets.symmetric(horizontal: 20),
                       child: Row(
@@ -133,14 +154,25 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                     MyFormField(
+                        ontap: () => setState(() {
+                              selectLogin = !selectLogin;
+                              _numberController.clear();
+                            }),
+                        enable: selectLogin,
                         icon: Icons.email,
                         controller: _emailController,
                         obscureText: false,
                         errorMsg: "Please enter your email",
                         hinttext: 'enter your email'),
                     MyFormField(
+                        ontap: () => setState(() {
+                              selectLogin = !selectLogin;
+                              _numberController.clear();
+                            }),
+                        enable: selectLogin,
                         icon: Icons.remove_red_eye,
                         controller: _passwordController,
+                        keyboard: TextInputType.emailAddress,
                         obscureText: true,
                         errorMsg: "Please enter your password",
                         hinttext: 'Enter password'),
@@ -151,9 +183,9 @@ class _LoginPageState extends State<LoginPage> {
                       padding: const EdgeInsets.symmetric(horizontal: 15.0),
                       child: ConfirmationButton(
                           text: 'Log In',
-                          textColor: Color.fromRGBO(255, 83, 169, 1),
-                          color: Colors.white,
-                          onPressed: _handleLogin),
+                          textColor: Colors.white,
+                          color: Color.fromRGBO(255, 83, 169, 1),
+                          onPressed: _handleLogin(context)),
                     ),
                     Container(
                       margin: EdgeInsets.only(left: 15, top: 40),
