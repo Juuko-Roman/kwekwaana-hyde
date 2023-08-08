@@ -1,11 +1,17 @@
+import 'dart:convert';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:file_picker/file_picker.dart';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../globals/global_vars.dart';
+import '../services/firebase_crud.dart';
 import 'filter.dart';
 import 'home_landing_screen.dart';
 import 'package:kwekwana/screens/chat_screen.dart';
 import 'package:kwekwana/screens/people_matches.dart';
 import 'package:kwekwana/screens/profile.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 class BottomNavBarScreens extends StatefulWidget {
   const BottomNavBarScreens({Key? key}) : super(key: key);
@@ -15,6 +21,7 @@ class BottomNavBarScreens extends StatefulWidget {
 }
 
 class _BottomNavBarScreensState extends State<BottomNavBarScreens> {
+  FirebaseCrudServices firebase = FirebaseCrudServices();
   List spotLightPeople = [
     {
       'name': 'Raymond V',
@@ -51,6 +58,55 @@ class _BottomNavBarScreensState extends State<BottomNavBarScreens> {
     setState(() {
       currentIndex = index;
     });
+  }
+
+  final FirebaseStorage storage = FirebaseStorage.instance;
+  File? _imageFile;
+  var pickedFile;
+
+  String? _uploadedImageUrl;
+
+  // Function to pick an image from the device gallery
+  Future<void> _pickImage() async {
+    final result = await FilePicker.platform.pickFiles();
+    if (result == null) return;
+    PlatformFile pickedToFile = result.files.first;
+    pickedFile = pickedToFile;
+
+    setState(() {
+      _imageFile = File(pickedFile.path);
+    });
+  }
+
+  // Function to upload the image to Firebase Storage
+  Future<void> _uploadImage() async {
+    await _pickImage();
+    try {
+      if (_imageFile == null) {
+        print('No image selected');
+        return;
+      }
+
+      final imagePath = 'userImages/${pickedFile.name}';
+      final Reference storageRef = storage.ref().child('images/${DateTime.now()}.png');
+      final UploadTask uploadTask = storageRef.putFile(_imageFile!);
+
+      uploadTask.snapshotEvents.listen((TaskSnapshot snapshot) {
+        print('Upload progress: ${snapshot.bytesTransferred}/${snapshot.totalBytes}');
+      }, onError: (Object e) {
+        print('Upload error: $e');
+      });
+
+      await uploadTask.whenComplete(() async {
+        final url = await storageRef.getDownloadURL();
+        setState(() {
+          _uploadedImageUrl = url;
+        });
+        print('Image uploaded successfully');
+      });
+    } catch (e) {
+      print('Failed to upload image: $e');
+    }
   }
 
   @override
@@ -91,6 +147,36 @@ class _BottomNavBarScreensState extends State<BottomNavBarScreens> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // Container(
+          //   height: 300,
+          //   child: StreamBuilder<QuerySnapshot>(
+          //     stream: firebase.getUsers(),
+          //     builder: (context, snapshot) {
+          //       if (!snapshot.hasData) {
+          //         return Center(
+          //           child: CircularProgressIndicator(),
+          //         );
+          //       }
+          //
+          //       List<QueryDocumentSnapshot> documents = snapshot.data!.docs;
+          //
+          //       return ListView.builder(
+          //         itemCount: documents.length,
+          //         itemBuilder: (context, index) {
+          //           final user = jsonDecode(jsonEncode(documents[index].data()));
+          //           return ListTile(
+          //             title: Text(user['name']),
+          //             subtitle: Text(user['email']),
+          //             trailing: IconButton(
+          //               icon: Icon(Icons.delete),
+          //               onPressed: () => firebase.deleteUser(documents[index].id),
+          //             ),
+          //           );
+          //         },
+          //       );
+          //     },
+          //   ),
+          // ),
           currentIndex != 1 && currentIndex != 2
               ? Padding(
                   padding: const EdgeInsets.only(top: 28.0, left: 20, right: 20, bottom: 10),
@@ -142,7 +228,7 @@ class _BottomNavBarScreensState extends State<BottomNavBarScreens> {
                           ),
                           GestureDetector(
                             onTap: () {
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => Filter()));
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => FilterScreen()));
                             },
                             child: const Icon(
                               Icons.filter_list_sharp,
@@ -178,7 +264,13 @@ class _BottomNavBarScreensState extends State<BottomNavBarScreens> {
                   child: Row(
                     children: [
                       GestureDetector(
-                        onTap: () {
+                        onTap: () async {
+                          // firebase.createUser('John Doe', 'johndoe@example.com');
+                          // firebase.updateUser("sNV3hPqvTaOG1P5EM7L2", "Brenda", "Namata");
+                          // firebase.deleteUser("sNV3hPqvTaOG1P5EM7L2");
+                          // print(firebase.getUsers());
+                          await _uploadImage();
+
                           // Navigator.push(context, MaterialPageRoute(builder: (context) => SettingsScreen()));
                         },
                         child: Container(

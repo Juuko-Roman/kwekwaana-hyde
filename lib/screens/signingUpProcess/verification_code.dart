@@ -26,7 +26,6 @@ class _VerificationCodeState extends State<VerificationCode> {
     const focusedBorderColor = Colors.pink;
     const fillColor = Color.fromRGBO(243, 246, 249, 0);
     const borderColor = Color.fromRGBO(23, 171, 144, 0.4);
-
     final defaultPinTheme = PinTheme(
       width: 56,
       height: 56,

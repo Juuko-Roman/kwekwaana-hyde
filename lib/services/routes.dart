@@ -2,6 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
 import '../screens/home.dart';
 import '../screens/auth/login.dart';
+import '../screens/registration.dart';
 import '../screens/signingUpProcess/enable_location.dart';
 import '../screens/signingUpProcess/gender_selection.dart';
 import '../screens/auth/signup.dart';

@@ -72,7 +72,7 @@ class _PeopleMatchesState extends State<PeopleMatches> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => Filter()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => FilterScreen()));
                       },
                       child: const Icon(
                         Icons.filter_list_sharp,

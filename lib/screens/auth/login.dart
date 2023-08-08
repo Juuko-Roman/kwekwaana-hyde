@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:go_router/go_router.dart';
 import 'package:kwekwana/screens/auth/signup.dart';
-import 'package:kwekwana/screens/signingUpProcess/verification_code.dart';
-
+import '../../providers/loginChecker.dart';
 import '../../services/firebase_auth.dart';
-import '../../services/routes.dart';
 import '../../widgets/backbutton.dart';
 import '../../widgets/confirmation_button.dart';
 import '../../widgets/formfield.dart';
@@ -57,8 +54,7 @@ class _LoginPageState extends State<LoginPage> {
           final result2 = await _authService.signInWithEmailAndPassword(email, password);
           Navigator.pop(context);
           if (result2 != null) {
-            print('object bbbbb');
-
+            AuthManager.loginUser();
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => BottomNavBarScreens()),
@@ -106,10 +102,7 @@ class _LoginPageState extends State<LoginPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  'Log in to find love',
-                  style: TextStyle(fontSize: 20),
-                ),
+                Text('Log in to find love', style: TextStyle(fontSize: 20)),
               ],
             ),
             Expanded(
@@ -141,15 +134,9 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 25),
-                            child: Text(
-                              "or email",
-                            ),
+                            child: Text("or email"),
                           ),
-                          Expanded(
-                            child: Divider(
-                              color: Color.fromRGBO(178, 178, 178, 1),
-                            ),
-                          ),
+                          Expanded(child: Divider(color: Color.fromRGBO(178, 178, 178, 1))),
                         ],
                       ),
                     ),
@@ -176,9 +163,7 @@ class _LoginPageState extends State<LoginPage> {
                         obscureText: true,
                         errorMsg: "Please enter your password",
                         hinttext: 'Enter password'),
-                    SizedBox(
-                      height: 30,
-                    ),
+                    SizedBox(height: 30),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 15.0),
                       child: ConfirmationButton(
@@ -192,10 +177,7 @@ class _LoginPageState extends State<LoginPage> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
-                            'Don\'t have an account?',
-                            style: TextStyle(color: Colors.white),
-                          ),
+                          Text('Don\'t have an account?', style: TextStyle(color: Colors.white)),
                           TextButton(
                             onPressed: () {
                               Navigator.push(context, MaterialPageRoute(builder: (context) => SignUp()));
@@ -203,9 +185,7 @@ class _LoginPageState extends State<LoginPage> {
                             child: Text(
                               'Sign Up',
                               style: TextStyle(
-                                color: Color.fromRGBO(255, 0, 127, 1),
-                                decoration: TextDecoration.underline,
-                              ),
+                                  color: Color.fromRGBO(255, 0, 127, 1), decoration: TextDecoration.underline),
                             ),
                           ),
                         ],

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:kwekwana/globals/global_vars.dart';
 import 'package:kwekwana/screens/edit_profile.dart';
 import 'package:kwekwana/screens/payments/packages_available.dart';
 
+import '../globals/confirm_dialog.dart';
+import '../providers/loginChecker.dart';
 import 'auth/login.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -180,7 +183,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           borderRadius: BorderRadius.circular(50.0),
                           child: MaterialButton(
                             onPressed: () async {
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
+                              if (await confirmDialogue(context, 'Confirm', 'Sure to Log Out?', 'Yes', 'No')) {
+                                // ignore: use_build_context_synchronously
+                                currentIndex = 0;
+                                AuthManager.logoutUser();
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(builder: (context) => LoginPage()),
+                                );
+                              }
                             },
                             minWidth: 350,
                             height: 35.0,

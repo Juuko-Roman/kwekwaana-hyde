@@ -37,6 +37,7 @@ class _SignUpState extends State<SignUp> {
           context.push('/enableLocation');
         } else {
           // signup failed, show error message
+
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error signing up')));
         }
       } else {

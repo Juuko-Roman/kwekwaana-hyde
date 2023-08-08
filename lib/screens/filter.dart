@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 
-class Filter extends StatefulWidget {
-  const Filter({Key? key}) : super(key: key);
+class FilterScreen extends StatefulWidget {
+  const FilterScreen({Key? key}) : super(key: key);
 
   @override
-  State<Filter> createState() => _FilterState();
+  State<FilterScreen> createState() => _FilterScreenState();
 }
 
-class _FilterState extends State<Filter> {
+class _FilterScreenState extends State<FilterScreen> {
   List<bool> isSelected = [false, false, false];
   double ageSliderValue = 20;
   double distanceSliderValue = 40;
@@ -41,7 +41,7 @@ class _FilterState extends State<Filter> {
           )
         ],
         title: Text(
-          'Filter',
+          'FilterScreen',
           style: TextStyle(
             fontSize: 16,
             color: Color.fromRGBO(255, 0, 127, 1),
